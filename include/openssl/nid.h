@@ -4791,6 +4791,11 @@ extern "C" {
 #define NID_picnic3l5 1110
 #define OBJ_picnic3l5 1L, 3L, 6L, 1L, 4L, 1L, 311L, 89L, 2L, 1L, 26L
 
+#define SN_picnicl1full "picnicl1full"
+#define LN_picnicl1full "picnicl1full"
+#define NID_picnicl1full 1111
+#define OBJ_picnicl1full 1L, 3L, 6L, 1L, 4L, 1L, 311L, 89L, 2L, 1L, 7L
+
 
 #if defined(__cplusplus)
 } /* extern C */

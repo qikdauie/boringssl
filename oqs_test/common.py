@@ -101,6 +101,7 @@ sig_to_code_point = {
         'mqdss3164': '65043',
         'picnicl1fs': '65045',
         'picnicl1ur': '65048',
+        'picnicl1full': '65174',
         'picnic3l1': '65051',
         'picnic3l3': '65054',
         'picnic3l5': '65056',

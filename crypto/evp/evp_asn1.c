@@ -84,6 +84,7 @@ static const EVP_PKEY_ASN1_METHOD *const kASN1Methods[] = {
     &mqdss3164_asn1_meth,
     &picnicl1fs_asn1_meth,
     &picnicl1ur_asn1_meth,
+    &picnicl1full_asn1_meth,
     &picnic3l1_asn1_meth,
     &picnic3l3_asn1_meth,
     &picnic3l5_asn1_meth,

@@ -4411,6 +4411,8 @@ TEST(SSLTest, SignatureAlgorithmProperties) {
             SSL_get_signature_algorithm_key_type(SSL_SIGN_PICNICL1FS));
   EXPECT_EQ(EVP_PKEY_PICNICL1UR,
             SSL_get_signature_algorithm_key_type(SSL_SIGN_PICNICL1UR));
+  EXPECT_EQ(EVP_PKEY_PICNICL1FULL,
+            SSL_get_signature_algorithm_key_type(SSL_SIGN_PICNICL1FULL));
   EXPECT_EQ(EVP_PKEY_PICNIC3L1,
             SSL_get_signature_algorithm_key_type(SSL_SIGN_PICNIC3L1));
   EXPECT_EQ(EVP_PKEY_PICNIC3L3,
@@ -4823,6 +4825,7 @@ TEST(SSLTest, SigAlgs) {
       {{NID_sha384, EVP_PKEY_MQDSS3164}, true, {SSL_SIGN_MQDSS3164}},
       {{NID_sha256, EVP_PKEY_PICNICL1FS}, true, {SSL_SIGN_PICNICL1FS}},
       {{NID_sha256, EVP_PKEY_PICNICL1UR}, true, {SSL_SIGN_PICNICL1UR}},
+      {{NID_sha256, EVP_PKEY_PICNICL1FULL}, true, {SSL_SIGN_PICNICL1FULL}},
       {{NID_sha256, EVP_PKEY_PICNIC3L1}, true, {SSL_SIGN_PICNIC3L1}},
       {{NID_sha384, EVP_PKEY_PICNIC3L3}, true, {SSL_SIGN_PICNIC3L3}},
       {{NID_sha512, EVP_PKEY_PICNIC3L5}, true, {SSL_SIGN_PICNIC3L5}},
@@ -4940,6 +4943,7 @@ TEST(SSLTest, SigAlgsList) {
       {"mqdss3164", true, {SSL_SIGN_MQDSS3164}},
       {"picnicl1fs", true, {SSL_SIGN_PICNICL1FS}},
       {"picnicl1ur", true, {SSL_SIGN_PICNICL1UR}},
+      {"picnicl1full", true, {SSL_SIGN_PICNICL1FULL}},
       {"picnic3l1", true, {SSL_SIGN_PICNIC3L1}},
       {"picnic3l3", true, {SSL_SIGN_PICNIC3L3}},
       {"picnic3l5", true, {SSL_SIGN_PICNIC3L5}},
