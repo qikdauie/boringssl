@@ -81,6 +81,7 @@ static const EVP_PKEY_METHOD *const evp_methods[] = {
     &mqdss3164_pkey_meth,
     &picnicl1fs_pkey_meth,
     &picnicl1ur_pkey_meth,
+    &picnicl1full_pkey_meth,
     &picnic3l1_pkey_meth,
     &picnic3l3_pkey_meth,
     &picnic3l5_pkey_meth,
