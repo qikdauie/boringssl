@@ -63,9 +63,10 @@ If an algorithm is provided by liboqs but is not listed below, it might still be
 The following quantum-safe algorithms from liboqs are supported (assuming they have been enabled in liboqs):
 
 - `oqs_kem_default` (see [here](https://github.com/open-quantum-safe/boringssl/wiki/Using-liboqs-algorithms-not-in-the-fork#oqsdefault) for what this denotes)
-- **FrodoKEM**: `frodo640aes`, `frodo640shake`, `frodo976aes`, `frodo976shake`, `frodo1344aes`, `frodo1344shake`
 - **BIKE**: `bike1l1cpa`, `bike1l3cpa`, `bikel1fo`, `bike1l3fo`
 - **CRYSTALS-Kyber**: `kyber512`, `kyber768`, `kyber1024`, `kyber90s512`, `kyber90s768`, `kyber90s1024`
+- **FrodoKEM**: `frodo640aes`, `frodo640shake`, `frodo976aes`, `frodo976shake`, `frodo1344aes`, `frodo1344shake`
+- **HQC**: `hqc128_1_cca2`, `hqc192_1_cca2`, `hqc192_2_cca2`, `hqc256_1_cca2`, `hqc256_2_cca2`, `hqc256_3_cca2`
 - **NewHope**: `newhope512cca`, `newhope1024cca`
 - **NTRU**: `ntru_hps2048509`, `ntru_hps2048677`, `ntru_hps4096821`, `ntru_hrss701`
 - **SABER**: `lightsaber`, `saber`, `firesaber`
