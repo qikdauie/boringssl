@@ -1,5 +1,12 @@
 version: 2.1
 
+# This is here just to make CircleCI
+# happy, but might be useful in the future.
+parameters:
+  run_downstream_tests:
+    type: boolean
+    default: false
+
 # CircleCI doesn't handle large file sets properly for local builds
 # https://github.com/CircleCI-Public/circleci-cli/issues/281#issuecomment-472808051
 localCheckout: &localCheckout
