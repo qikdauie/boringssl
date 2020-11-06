@@ -38,7 +38,7 @@ jobs:
       - checkout # change this from "checkout" to "*localCheckout" when running CircleCI locally
       - run:
           name: Clone liboqs
-          command: git clone --branch master --single-branch --depth 1 https://github.com/open-quantum-safe/liboqs.git
+          command: git clone --branch main --single-branch --depth 1 https://github.com/open-quantum-safe/liboqs.git
       - run:
           name: Build liboqs
           command: mkdir build && cd build && cmake .. -G"Ninja" -DBUILD_SHARED_LIBS=<< parameters.LIBOQS_SHARED >> -DOQS_USE_OPENSSL=OFF -DOQS_BUILD_ONLY_LIB=ON -DCMAKE_INSTALL_PREFIX=../../oqs && ninja install
