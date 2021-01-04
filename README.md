@@ -63,15 +63,17 @@ If an algorithm is provided by liboqs but is not listed below, it might still be
 The following quantum-safe algorithms from liboqs are supported (assuming they have been enabled in liboqs):
 
 - `oqs_kem_default` (see [here](https://github.com/open-quantum-safe/boringssl/wiki/Using-liboqs-algorithms-not-in-the-fork#oqsdefault) for what this denotes)
-- **BIKE**: `bike1l1cpa`, `bike1l3cpa`, `bikel1fo`, `bike1l3fo`
+<!--- OQS_TEMPLATE_FRAGMENT_LIST_KEXS_START -->
+- **BIKE**: `bike1l1cpa`, `bike1l3cpa`, `bike1l1fo`, `bike1l3fo`
 - **CRYSTALS-Kyber**: `kyber512`, `kyber768`, `kyber1024`, `kyber90s512`, `kyber90s768`, `kyber90s1024`
 - **FrodoKEM**: `frodo640aes`, `frodo640shake`, `frodo976aes`, `frodo976shake`, `frodo1344aes`, `frodo1344shake`
-- **HQC**: `hqc128`, `hqc192`, `hqc256`
+- **HQC**: `hqc128`, `hqc192`, `hqc256`†
 - **NTRU**: `ntru_hps2048509`, `ntru_hps2048677`, `ntru_hps4096821`, `ntru_hrss701`
 - **NTRU-Prime**: `ntrulpr653`, `ntrulpr761`, `ntrulpr857`, `sntrup653`, `sntrup761`, `sntrup857`
 - **SABER**: `lightsaber`, `saber`, `firesaber`
 - **SIDH**: `sidhp434`, `sidhp503`, `sidhp610`, `sidhp751`
 - **SIKE**: `sikep434`, `sikep503`, `sikep610`, `sikep751`
+<!--- OQS_TEMPLATE_FRAGMENT_LIST_KEXS_END -->
 
 For each `<KEX>` listed above, the following hybrid algorithms are made available as follows:
 
@@ -79,18 +81,24 @@ For each `<KEX>` listed above, the following hybrid algorithms are made availabl
 - If `<KEX>` has L3 security, the method `p384_<KEX>` is available, which combines `<KEX>` with ECDH using NIST's P384 curve
 - If `<KEX>` has L5 security, the method `p521_<KEX>` is available, which combines `<KEX>` with ECDH using NIST's P521 curve
 
+For example, since `kyber768` claims L3 security, the hybrid `p384_kyber768` is available.
+
+Note that algorithms marked with a dagger (†) have large stack usage and may cause failures when run on threads or in constrained environments.
+
 #### Signatures
 
 The following quantum-safe digital signature algorithms from liboqs are supported (assuming they have been enabled in liboqs):
 
 - `oqs_sig_default` (see [here](https://github.com/open-quantum-safe/boringssl/wiki/Using-liboqs-algorithms-not-in-the-fork#oqsdefault) for what this denotes)
+<!--- OQS_TEMPLATE_FRAGMENT_LIST_SIGS_START -->
 - **CRYSTALS-DILITHIUM**: `dilithium2`, `dilithium3`, `dilithium4`
 - **Falcon**: `falcon512`, `falcon1024`
-- **Picnic**: `picnicl1fs`, `picnicl1ur`, `picnicl1full`, `picnic3l1fs`, `picnic3l3fs`, `picnic3l5fs`
-- **Rainbow**: `rainbowIaclassic`, `rainbowIacyclic`, `rainbowIacycliccompressed`, `rainbowIIIcclassic`, `rainbowIIIccyclic`, `rainbowIIIccycliccompressed`, `rainbowVcclassic`, `rainbowVccylic`, `rainbowVccycliccompressed`
+- **Picnic**: `picnicl1fs`, `picnicl1ur`, `picnicl1full`, `picnic3l1`, `picnic3l3`, `picnic3l5`
+- **Rainbow**: `rainbowIclassic`, `rainbowIcircumzenithal`, `rainbowIcompressed`, `rainbowIIIclassic`, `rainbowIIIcircumzenithal`, `rainbowIIIcompressed`, `rainbowVclassic`, `rainbowVcircumzenithal`, `rainbowVcompressed`
 - **SPHINCS-Haraka**: `sphincsharaka128frobust`, `sphincsharaka128fsimple`, `sphincsharaka128srobust`, `sphincsharaka128ssimple`, `sphincsharaka192frobust`, `sphincsharaka192fsimple`, `sphincsharaka192srobust`, `sphincsharaka192ssimple`, `sphincsharaka256frobust`, `sphincsharaka256fsimple`, `sphincsharaka256srobust`, `sphincsharaka256ssimple`
 - **SPHINCS-SHA256**: `sphincssha256128frobust`, `sphincssha256128fsimple`, `sphincssha256128srobust`, `sphincssha256128ssimple`, `sphincssha256192frobust`, `sphincssha256192fsimple`, `sphincssha256192srobust`, `sphincssha256192ssimple`, `sphincssha256256frobust`, `sphincssha256256fsimple`, `sphincssha256256srobust`, `sphincssha256256ssimple`
 - **SPHINCS-SHAKE256**: `sphincsshake256128frobust`, `sphincsshake256128fsimple`, `sphincsshake256128srobust`, `sphincsshake256128ssimple`, `sphincsshake256192frobust`, `sphincsshake256192fsimple`, `sphincsshake256192srobust`, `sphincsshake256192ssimple`, `sphincsshake256256frobust`, `sphincsshake256256fsimple`, `sphincsshake256256srobust`, `sphincsshake256256ssimple`
+<!--- OQS_TEMPLATE_FRAGMENT_LIST_SIGS_END -->
 
 ## Quickstart
 
