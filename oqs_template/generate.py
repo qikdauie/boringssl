@@ -64,6 +64,7 @@ populate('crypto/evp/p_oqs.c', config, '/////')
 populate('crypto/x509/algorithm.c', config, '/////')
 populate('ssl/ssl_privkey.cc', config, '/////')
 populate('include/openssl/evp.h', config, '/////')
+populate('crypto/obj/obj_xref.c', config, '/////')
 
 # both
 populate('crypto/obj/objects.txt', config, '#####')
