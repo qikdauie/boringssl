@@ -90,7 +90,6 @@ static const nid_triple kTriples[] = {
     {NID_rsassaPss, NID_undef, NID_rsaEncryption},
     {NID_ED25519, NID_undef, NID_ED25519},
 ///// OQS_TEMPLATE_FRAGMENT_DEFINE_NID_TRIPLES_START
-    {NID_oqs_sig_default, NID_sha256, NID_oqs_sig_default},
     {NID_dilithium2, NID_sha256, NID_dilithium2},
     {NID_dilithium3, NID_sha384, NID_dilithium3},
     {NID_dilithium5, NID_sha512, NID_dilithium5},

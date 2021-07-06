@@ -420,13 +420,6 @@ static const CurveTest kCurveTests[] = {
   },
 ///// OQS_TEMPLATE_FRAGMENT_ADD_CURVETEST_START
   {
-    "oqs_kem_default:p256_oqs_kem_default",
-    {
-      SSL_CURVE_OQS_KEM_DEFAULT,
-      SSL_CURVE_P256_OQS_KEM_DEFAULT,
-    },
-  },
-  {
     "frodo640aes:p256_frodo640aes",
     {
       SSL_CURVE_FRODO640AES,
@@ -469,17 +462,17 @@ static const CurveTest kCurveTests[] = {
     },
   },
   {
-    "bike1l1cpa:p256_bike1l1cpa",
+    "bikel1:p256_bikel1",
     {
-      SSL_CURVE_BIKE1L1CPA,
-      SSL_CURVE_P256_BIKE1L1CPA,
+      SSL_CURVE_BIKEL1,
+      SSL_CURVE_P256_BIKEL1,
     },
   },
   {
-    "bike1l3cpa:p384_bike1l3cpa",
+    "bikel3:p384_bikel3",
     {
-      SSL_CURVE_BIKE1L3CPA,
-      SSL_CURVE_P384_BIKE1L3CPA,
+      SSL_CURVE_BIKEL3,
+      SSL_CURVE_P384_BIKEL3,
     },
   },
   {
@@ -606,20 +599,6 @@ static const CurveTest kCurveTests[] = {
     {
       SSL_CURVE_SIKEP751,
       SSL_CURVE_P521_SIKEP751,
-    },
-  },
-  {
-    "bike1l1fo:p256_bike1l1fo",
-    {
-      SSL_CURVE_BIKE1L1FO,
-      SSL_CURVE_P256_BIKE1L1FO,
-    },
-  },
-  {
-    "bike1l3fo:p384_bike1l3fo",
-    {
-      SSL_CURVE_BIKE1L3FO,
-      SSL_CURVE_P384_BIKE1L3FO,
     },
   },
   {
@@ -4398,8 +4377,6 @@ TEST(SSLTest, SignatureAlgorithmProperties) {
             SSL_get_signature_algorithm_digest(SSL_SIGN_RSA_PSS_RSAE_SHA384));
   EXPECT_TRUE(SSL_is_signature_algorithm_rsa_pss(SSL_SIGN_RSA_PSS_RSAE_SHA384));
 ///// OQS_TEMPLATE_FRAGMENT_ADD_SIG_ALG_PROP_TESTS_START
-  EXPECT_EQ(EVP_PKEY_OQS_SIG_DEFAULT,
-            SSL_get_signature_algorithm_key_type(SSL_SIGN_OQS_SIG_DEFAULT));
   EXPECT_EQ(EVP_PKEY_DILITHIUM2,
             SSL_get_signature_algorithm_key_type(SSL_SIGN_DILITHIUM2));
   EXPECT_EQ(EVP_PKEY_DILITHIUM3,
@@ -4820,7 +4797,6 @@ TEST(SSLTest, SigAlgs) {
        true,
        {SSL_SIGN_ED25519, SSL_SIGN_ECDSA_SECP384R1_SHA384}},
 ///// OQS_TEMPLATE_FRAGMENT_ADD_SIG_ALG_EQ_TESTS_START
-      {{NID_sha256, EVP_PKEY_OQS_SIG_DEFAULT}, true, {SSL_SIGN_OQS_SIG_DEFAULT}},
       {{NID_sha256, EVP_PKEY_DILITHIUM2}, true, {SSL_SIGN_DILITHIUM2}},
       {{NID_sha384, EVP_PKEY_DILITHIUM3}, true, {SSL_SIGN_DILITHIUM3}},
       {{NID_sha512, EVP_PKEY_DILITHIUM5}, true, {SSL_SIGN_DILITHIUM5}},
@@ -4937,7 +4913,6 @@ TEST(SSLTest, SigAlgsList) {
       {"RSA-PSS+SHA256", true, {SSL_SIGN_RSA_PSS_RSAE_SHA256}},
       {"PSS+SHA256", true, {SSL_SIGN_RSA_PSS_RSAE_SHA256}},
 ///// OQS_TEMPLATE_FRAGMENT_SIGALGS_LIST_TESTS_START
-      {"oqs_sig_default", true, {SSL_SIGN_OQS_SIG_DEFAULT}},
       {"dilithium2", true, {SSL_SIGN_DILITHIUM2}},
       {"dilithium3", true, {SSL_SIGN_DILITHIUM3}},
       {"dilithium5", true, {SSL_SIGN_DILITHIUM5}},
@@ -6871,8 +6846,6 @@ struct TLSGroup {
 // is suspected to be the cause of the non-deterministic OQS test failures.
 static const TLSGroup kOQSGroups[] = {
 ///// OQS_TEMPLATE_FRAGMENT_LIST_ALL_OQS_KEMS_START
-    {NID_oqs_kem_default, SSL_CURVE_OQS_KEM_DEFAULT},
-    {NID_p256_oqs_kem_default, SSL_CURVE_P256_OQS_KEM_DEFAULT},
     {NID_frodo640aes, SSL_CURVE_FRODO640AES},
     {NID_p256_frodo640aes, SSL_CURVE_P256_FRODO640AES},
     {NID_frodo640shake, SSL_CURVE_FRODO640SHAKE},
@@ -6885,10 +6858,10 @@ static const TLSGroup kOQSGroups[] = {
     {NID_p521_frodo1344aes, SSL_CURVE_P521_FRODO1344AES},
     {NID_frodo1344shake, SSL_CURVE_FRODO1344SHAKE},
     {NID_p521_frodo1344shake, SSL_CURVE_P521_FRODO1344SHAKE},
-    {NID_bike1l1cpa, SSL_CURVE_BIKE1L1CPA},
-    {NID_p256_bike1l1cpa, SSL_CURVE_P256_BIKE1L1CPA},
-    {NID_bike1l3cpa, SSL_CURVE_BIKE1L3CPA},
-    {NID_p384_bike1l3cpa, SSL_CURVE_P384_BIKE1L3CPA},
+    {NID_bikel1, SSL_CURVE_BIKEL1},
+    {NID_p256_bikel1, SSL_CURVE_P256_BIKEL1},
+    {NID_bikel3, SSL_CURVE_BIKEL3},
+    {NID_p384_bikel3, SSL_CURVE_P384_BIKEL3},
     {NID_kyber512, SSL_CURVE_KYBER512},
     {NID_p256_kyber512, SSL_CURVE_P256_KYBER512},
     {NID_kyber768, SSL_CURVE_KYBER768},
@@ -6925,10 +6898,6 @@ static const TLSGroup kOQSGroups[] = {
     {NID_p384_sikep610, SSL_CURVE_P384_SIKEP610},
     {NID_sikep751, SSL_CURVE_SIKEP751},
     {NID_p521_sikep751, SSL_CURVE_P521_SIKEP751},
-    {NID_bike1l1fo, SSL_CURVE_BIKE1L1FO},
-    {NID_p256_bike1l1fo, SSL_CURVE_P256_BIKE1L1FO},
-    {NID_bike1l3fo, SSL_CURVE_BIKE1L3FO},
-    {NID_p384_bike1l3fo, SSL_CURVE_P384_BIKE1L3FO},
     {NID_kyber90s512, SSL_CURVE_KYBER90S512},
     {NID_p256_kyber90s512, SSL_CURVE_P256_KYBER90S512},
     {NID_kyber90s768, SSL_CURVE_KYBER90S768},
@@ -7038,7 +7007,6 @@ class OQSHandshakeTest : public ::testing::TestWithParam<int> {
 INSTANTIATE_TEST_SUITE_P(WithSignatureNIDs, OQSHandshakeTest,
                          testing::Values(
 ///// OQS_TEMPLATE_FRAGMENT_LIST_ALL_OQS_SIGS_START
-                            NID_oqs_sig_default,
                             NID_dilithium2,
                             NID_dilithium3,
                             NID_dilithium5,

@@ -1642,12 +1642,6 @@ bssl::UniquePtr<SSL> TestConfig::NewSSL(
           break;
 
 ///// OQS_TEMPLATE_FRAGMENT_ADD_NIDS_START
-        case SSL_CURVE_OQS_KEM_DEFAULT:
-          nids.push_back(NID_oqs_kem_default);
-          break;
-        case SSL_CURVE_P256_OQS_KEM_DEFAULT:
-          nids.push_back(NID_p256_oqs_kem_default);
-          break;
         case SSL_CURVE_FRODO640AES:
           nids.push_back(NID_frodo640aes);
           break;
@@ -1684,17 +1678,17 @@ bssl::UniquePtr<SSL> TestConfig::NewSSL(
         case SSL_CURVE_P521_FRODO1344SHAKE:
           nids.push_back(NID_p521_frodo1344shake);
           break;
-        case SSL_CURVE_BIKE1L1CPA:
-          nids.push_back(NID_bike1l1cpa);
+        case SSL_CURVE_BIKEL1:
+          nids.push_back(NID_bikel1);
           break;
-        case SSL_CURVE_P256_BIKE1L1CPA:
-          nids.push_back(NID_p256_bike1l1cpa);
+        case SSL_CURVE_P256_BIKEL1:
+          nids.push_back(NID_p256_bikel1);
           break;
-        case SSL_CURVE_BIKE1L3CPA:
-          nids.push_back(NID_bike1l3cpa);
+        case SSL_CURVE_BIKEL3:
+          nids.push_back(NID_bikel3);
           break;
-        case SSL_CURVE_P384_BIKE1L3CPA:
-          nids.push_back(NID_p384_bike1l3cpa);
+        case SSL_CURVE_P384_BIKEL3:
+          nids.push_back(NID_p384_bikel3);
           break;
         case SSL_CURVE_KYBER512:
           nids.push_back(NID_kyber512);
@@ -1804,18 +1798,6 @@ bssl::UniquePtr<SSL> TestConfig::NewSSL(
         case SSL_CURVE_P521_SIKEP751:
           nids.push_back(NID_p521_sikep751);
           break;
-        case SSL_CURVE_BIKE1L1FO:
-          nids.push_back(NID_bike1l1fo);
-          break;
-        case SSL_CURVE_P256_BIKE1L1FO:
-          nids.push_back(NID_p256_bike1l1fo);
-          break;
-        case SSL_CURVE_BIKE1L3FO:
-          nids.push_back(NID_bike1l3fo);
-          break;
-        case SSL_CURVE_P384_BIKE1L3FO:
-          nids.push_back(NID_p384_bike1l3fo);
-          break;
         case SSL_CURVE_KYBER90S512:
           nids.push_back(NID_kyber90s512);
           break;
@@ -1900,15 +1882,14 @@ bssl::UniquePtr<SSL> TestConfig::NewSSL(
         NID_secp224r1, NID_X9_62_prime256v1, NID_secp384r1,
         NID_secp521r1, NID_X25519,           NID_CECPQ2,
 ///// OQS_TEMPLATE_FRAGMENT_LIST_PQ_CURVEIDS_START
-        NID_oqs_kem_default, NID_p256_oqs_kem_default,
         NID_frodo640aes, NID_p256_frodo640aes,
         NID_frodo640shake, NID_p256_frodo640shake,
         NID_frodo976aes, NID_p384_frodo976aes,
         NID_frodo976shake, NID_p384_frodo976shake,
         NID_frodo1344aes, NID_p521_frodo1344aes,
         NID_frodo1344shake, NID_p521_frodo1344shake,
-        NID_bike1l1cpa, NID_p256_bike1l1cpa,
-        NID_bike1l3cpa, NID_p384_bike1l3cpa,
+        NID_bikel1, NID_p256_bikel1,
+        NID_bikel3, NID_p384_bikel3,
         NID_kyber512, NID_p256_kyber512,
         NID_kyber768, NID_p384_kyber768,
         NID_kyber1024, NID_p521_kyber1024,
@@ -1927,8 +1908,6 @@ bssl::UniquePtr<SSL> TestConfig::NewSSL(
         NID_sikep503, NID_p256_sikep503,
         NID_sikep610, NID_p384_sikep610,
         NID_sikep751, NID_p521_sikep751,
-        NID_bike1l1fo, NID_p256_bike1l1fo,
-        NID_bike1l3fo, NID_p384_bike1l3fo,
         NID_kyber90s512, NID_p256_kyber90s512,
         NID_kyber90s768, NID_p384_kyber90s768,
         NID_kyber90s1024, NID_p521_kyber90s1024,

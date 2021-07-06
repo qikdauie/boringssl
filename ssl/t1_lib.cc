@@ -201,8 +201,6 @@ static bool tls1_check_duplicate_extensions(const CBS *cbs) {
 static bool is_post_quantum_group(uint16_t id) {
   return id == SSL_CURVE_CECPQ2 ||
 ///// OQS_TEMPLATE_FRAGMENT_ADD_PQ_GROUPS_START
-         id == SSL_CURVE_OQS_KEM_DEFAULT ||
-         id == SSL_CURVE_P256_OQS_KEM_DEFAULT ||
          id == SSL_CURVE_FRODO640AES ||
          id == SSL_CURVE_P256_FRODO640AES ||
          id == SSL_CURVE_FRODO640SHAKE ||
@@ -215,10 +213,10 @@ static bool is_post_quantum_group(uint16_t id) {
          id == SSL_CURVE_P521_FRODO1344AES ||
          id == SSL_CURVE_FRODO1344SHAKE ||
          id == SSL_CURVE_P521_FRODO1344SHAKE ||
-         id == SSL_CURVE_BIKE1L1CPA ||
-         id == SSL_CURVE_P256_BIKE1L1CPA ||
-         id == SSL_CURVE_BIKE1L3CPA ||
-         id == SSL_CURVE_P384_BIKE1L3CPA ||
+         id == SSL_CURVE_BIKEL1 ||
+         id == SSL_CURVE_P256_BIKEL1 ||
+         id == SSL_CURVE_BIKEL3 ||
+         id == SSL_CURVE_P384_BIKEL3 ||
          id == SSL_CURVE_KYBER512 ||
          id == SSL_CURVE_P256_KYBER512 ||
          id == SSL_CURVE_KYBER768 ||
@@ -255,10 +253,6 @@ static bool is_post_quantum_group(uint16_t id) {
          id == SSL_CURVE_P384_SIKEP610 ||
          id == SSL_CURVE_SIKEP751 ||
          id == SSL_CURVE_P521_SIKEP751 ||
-         id == SSL_CURVE_BIKE1L1FO ||
-         id == SSL_CURVE_P256_BIKE1L1FO ||
-         id == SSL_CURVE_BIKE1L3FO ||
-         id == SSL_CURVE_P384_BIKE1L3FO ||
          id == SSL_CURVE_KYBER90S512 ||
          id == SSL_CURVE_P256_KYBER90S512 ||
          id == SSL_CURVE_KYBER90S768 ||
@@ -379,7 +373,7 @@ static const uint16_t kDefaultGroups[] = {
     SSL_CURVE_SECP384R1,
 ///// OQS_TEMPLATE_FRAGMENT_ADD_DEFAULT_KEMS_START
     SSL_CURVE_P256_FRODO640AES,
-    SSL_CURVE_P256_BIKE1L1CPA,
+    SSL_CURVE_P256_BIKEL1,
     SSL_CURVE_P256_NTRU_HPS2048509,
     SSL_CURVE_P256_LIGHTSABER,
     SSL_CURVE_P256_SIDHP434,
@@ -399,8 +393,6 @@ static const uint16_t kAllSupportedGroups[] = {
     SSL_CURVE_SECP256R1,
     SSL_CURVE_SECP384R1,
 ///// OQS_TEMPLATE_FRAGMENT_ADD_ALL_KEMS_START
-    SSL_CURVE_P256_OQS_KEM_DEFAULT,
-    SSL_CURVE_OQS_KEM_DEFAULT,
     SSL_CURVE_P256_FRODO640AES,
     SSL_CURVE_FRODO640AES,
     SSL_CURVE_P256_FRODO640SHAKE,
@@ -413,10 +405,10 @@ static const uint16_t kAllSupportedGroups[] = {
     SSL_CURVE_FRODO1344AES,
     SSL_CURVE_P521_FRODO1344SHAKE,
     SSL_CURVE_FRODO1344SHAKE,
-    SSL_CURVE_P256_BIKE1L1CPA,
-    SSL_CURVE_BIKE1L1CPA,
-    SSL_CURVE_P384_BIKE1L3CPA,
-    SSL_CURVE_BIKE1L3CPA,
+    SSL_CURVE_P256_BIKEL1,
+    SSL_CURVE_BIKEL1,
+    SSL_CURVE_P384_BIKEL3,
+    SSL_CURVE_BIKEL3,
     SSL_CURVE_P256_KYBER512,
     SSL_CURVE_KYBER512,
     SSL_CURVE_P384_KYBER768,
@@ -453,10 +445,6 @@ static const uint16_t kAllSupportedGroups[] = {
     SSL_CURVE_SIKEP610,
     SSL_CURVE_P521_SIKEP751,
     SSL_CURVE_SIKEP751,
-    SSL_CURVE_P256_BIKE1L1FO,
-    SSL_CURVE_BIKE1L1FO,
-    SSL_CURVE_P384_BIKE1L3FO,
-    SSL_CURVE_BIKE1L3FO,
     SSL_CURVE_P256_KYBER90S512,
     SSL_CURVE_KYBER90S512,
     SSL_CURVE_P384_KYBER90S768,
@@ -609,7 +597,6 @@ bool tls1_check_group_id(const SSL_HANDSHAKE *hs, uint16_t group_id) {
 static const uint16_t kVerifySignatureAlgorithms[] = {
     // List our preferred algorithms first.
 ///// OQS_TEMPLATE_FRAGMENT_LIST_VERIFY_SIG_ALGS_START
-    SSL_SIGN_OQS_SIG_DEFAULT,
     SSL_SIGN_DILITHIUM2,
     SSL_SIGN_DILITHIUM3,
     SSL_SIGN_DILITHIUM5,
@@ -692,7 +679,6 @@ static const uint16_t kVerifySignatureAlgorithms[] = {
 static const uint16_t kSignSignatureAlgorithms[] = {
     // List our preferred algorithms first.
 ///// OQS_TEMPLATE_FRAGMENT_LIST_SIGN_SIG_ALGS_START
-    SSL_SIGN_OQS_SIG_DEFAULT,
     SSL_SIGN_DILITHIUM2,
     SSL_SIGN_DILITHIUM3,
     SSL_SIGN_DILITHIUM5,
@@ -3954,7 +3940,6 @@ Span<const uint16_t> tls1_get_peer_verify_algorithms(const SSL_HANDSHAKE *hs) {
                               SSL_SIGN_RSA_PKCS1_SHA1,
                               SSL_SIGN_ECDSA_SHA1,
 ///// OQS_TEMPLATE_FRAGMENT_LIST_DEFAULT_SIG_ALGS_START
-                              SSL_SIGN_OQS_SIG_DEFAULT,
                               SSL_SIGN_DILITHIUM2,
                               SSL_SIGN_DILITHIUM3,
                               SSL_SIGN_DILITHIUM5,

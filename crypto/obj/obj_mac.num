@@ -954,8 +954,6 @@ sha512_256		962
 frodo640aes		963
 p256_frodo640aes		964
 dilithium2		966
-oqs_kem_default		973
-p256_oqs_kem_default		974
 frodo640shake		977
 p256_frodo640shake		978
 frodo976aes		979
@@ -966,14 +964,6 @@ frodo1344aes		983
 p521_frodo1344aes		984
 frodo1344shake		985
 p521_frodo1344shake		986
-bike1l3cpa		989
-p384_bike1l3cpa		990
-bike1l1fo		991
-p256_bike1l1fo		992
-bike1l3fo		993
-p384_bike1l3fo		994
-bike1l1cpa		995
-p256_bike1l1cpa		996
 kyber512		997
 p256_kyber512		998
 kyber768		999
@@ -1034,7 +1024,6 @@ hqc192		1138
 p384_hqc192		1139
 hqc256		1140
 p521_hqc256		1141
-oqs_sig_default		1142
 dilithium3		1143
 falcon512		1145
 falcon1024		1146
@@ -1093,3 +1082,7 @@ dilithium5		1207
 dilithium2_aes		1208
 dilithium3_aes		1209
 dilithium5_aes		1210
+bikel1		1211
+p256_bikel1		1212
+bikel3		1213
+p384_bikel3		1214

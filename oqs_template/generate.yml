@@ -2,11 +2,6 @@
 # https://docs.google.com/spreadsheets/d/12YarzaNv3XQNLnvDsWLlRKwtZFhRrDdWf36YlzwrPeg/edit#gid=0
 kems:
   -
-    name: 'oqs_kem_default'
-    nid: '0x01FF'
-    mix_with: [{'name': 'p256', 'mix_nid':'0x2FFF', 'nid':'SSL_CURVE_SECP256R1'}]
-    oqs_meth: 'OQS_KEM_alg_default'
-  -
     family: 'FrodoKEM'
     name: 'frodo640aes'
     nid: '0x0200'
@@ -45,22 +40,22 @@ kems:
     oqs_meth: 'OQS_KEM_alg_frodokem_1344_shake'
   -
     family: 'BIKE'
-    name: 'bike1l1cpa'
-    nid: '0x0206'
-    mix_with: [{'name': 'p256', 'mix_nid':'0x2F06', 'nid':'SSL_CURVE_SECP256R1'}]
+    name: 'bikel1'
+    nid: '0x0238'
+    mix_with: [{'name': 'p256', 'mix_nid':'0x2F38', 'nid':'SSL_CURVE_SECP256R1'}]
     use_as_default_with: 'p256'
-    oqs_meth: 'OQS_KEM_alg_bike1_l1_cpa'
+    oqs_meth: 'OQS_KEM_alg_bike_l1'
   -
     family: 'BIKE'
-    name: 'bike1l3cpa'
-    nid: '0x0207'
-    mix_with: [{'name': 'p384', 'mix_nid':'0x2F07', 'nid':'SSL_CURVE_SECP384R1'}]
-    oqs_meth: 'OQS_KEM_alg_bike1_l3_cpa'
+    name: 'bikel3'
+    nid: '0x023B'
+    mix_with: [{'name': 'p384', 'mix_nid':'0x2F3B', 'nid':'SSL_CURVE_SECP384R1'}]
+    oqs_meth: 'OQS_KEM_alg_bike_l3'
   -
     family: 'CRYSTALS-Kyber'
     name: 'kyber512'
     nid: '0x020F'
-    mix_with: [{'name': 'p256', 'mix_nid':'0x2F0F', 'nid':'SSL_CURVE_SECP256R1'}]
+    mix_with: [{'name': 'p256', 'mix_nid':'0x2F3A', 'nid':'SSL_CURVE_SECP256R1'}]
     oqs_meth: 'OQS_KEM_alg_kyber_512'
   -
     family: 'CRYSTALS-Kyber'
@@ -169,18 +164,6 @@ kems:
     mix_with: [{'name': 'p521', 'mix_nid':'0x2F22', 'nid':'SSL_CURVE_SECP521R1'}]
     oqs_meth: 'OQS_KEM_alg_sike_p751'
   -
-    family: 'BIKE'
-    name: 'bike1l1fo'
-    nid: '0x0223'
-    mix_with: [{'name': 'p256', 'mix_nid':'0x2F23', 'nid':'SSL_CURVE_SECP256R1'}]
-    oqs_meth: 'OQS_KEM_alg_bike1_l1_fo'
-  -
-    family: 'BIKE'
-    name: 'bike1l3fo'
-    nid: '0x0224'
-    mix_with: [{'name': 'p384', 'mix_nid':'0x2F24', 'nid':'SSL_CURVE_SECP384R1'}]
-    oqs_meth: 'OQS_KEM_alg_bike1_l3_fo'
-  -
     family: 'CRYSTALS-Kyber'
     name: 'kyber90s512'
     nid: '0x0229'
@@ -258,13 +241,6 @@ kems:
 # N.B: Code points and OIDs must match those used
 # in OQS-OpenSSL 1.1.1 for interoperability.
 sigs:
-  -
-    name: 'oqs_sig_default'
-    oid: '1 3 9999 1 1'
-    oid_encoded: '0x2B, 0xCE, 0x0F, 0x01, 0x01'
-    oqs_meth: 'OQS_SIG_alg_default'
-    code_point: '0xfe00'
-    claimed_security_level: '1'
   -
     family: 'CRYSTALS-DILITHIUM'
     name: 'dilithium2'

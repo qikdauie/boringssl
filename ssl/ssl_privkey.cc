@@ -76,7 +76,6 @@ bool ssl_is_key_type_supported(int key_type) {
          key_type == EVP_PKEY_EC ||
          key_type == EVP_PKEY_ED25519 ||
 ///// OQS_TEMPLATE_FRAGMENT_CHECK_KEY_TYPE_START
-         key_type == EVP_PKEY_OQS_SIG_DEFAULT ||
          key_type == EVP_PKEY_DILITHIUM2 ||
          key_type == EVP_PKEY_DILITHIUM3 ||
          key_type == EVP_PKEY_DILITHIUM5 ||
@@ -186,7 +185,6 @@ static const SSL_SIGNATURE_ALGORITHM kSignatureAlgorithms[] = {
 
     {SSL_SIGN_ED25519, EVP_PKEY_ED25519, NID_undef, nullptr, false},
 ///// OQS_TEMPLATE_FRAGMENT_LIST_SSL_SIG_ALGS_START
-    {SSL_SIGN_OQS_SIG_DEFAULT, EVP_PKEY_OQS_SIG_DEFAULT, NID_undef, &EVP_sha256, false},
     {SSL_SIGN_DILITHIUM2, EVP_PKEY_DILITHIUM2, NID_undef, &EVP_sha256, false},
     {SSL_SIGN_DILITHIUM3, EVP_PKEY_DILITHIUM3, NID_undef, &EVP_sha384, false},
     {SSL_SIGN_DILITHIUM5, EVP_PKEY_DILITHIUM5, NID_undef, &EVP_sha512, false},
@@ -578,7 +576,6 @@ static const struct {
     {SSL_SIGN_RSA_PSS_RSAE_SHA512, "rsa_pss_rsae_sha512"},
     {SSL_SIGN_ED25519, "ed25519"},
 ///// OQS_TEMPLATE_FRAGMENT_NAME_SIG_ALG_START
-    {SSL_SIGN_OQS_SIG_DEFAULT, "oqs_sig_default"},
     {SSL_SIGN_DILITHIUM2, "dilithium2"},
     {SSL_SIGN_DILITHIUM3, "dilithium3"},
     {SSL_SIGN_DILITHIUM5, "dilithium5"},
@@ -712,7 +709,6 @@ static constexpr struct {
     {EVP_PKEY_EC, NID_sha512, SSL_SIGN_ECDSA_SECP521R1_SHA512},
     {EVP_PKEY_ED25519, NID_undef, SSL_SIGN_ED25519},
 ///// OQS_TEMPLATE_FRAGMENT_ADD_SIG_ALG_MAPPINGS_START
-    {EVP_PKEY_OQS_SIG_DEFAULT, NID_sha256, SSL_SIGN_OQS_SIG_DEFAULT},
     {EVP_PKEY_DILITHIUM2, NID_sha256, SSL_SIGN_DILITHIUM2},
     {EVP_PKEY_DILITHIUM3, NID_sha384, SSL_SIGN_DILITHIUM3},
     {EVP_PKEY_DILITHIUM5, NID_sha512, SSL_SIGN_DILITHIUM5},
