@@ -4262,12 +4262,6 @@ extern "C" {
 #define NID_dilithium2 966
 #define OBJ_dilithium2 1L, 3L, 6L, 1L, 4L, 1L, 2L, 267L, 7L, 4L, 4L
 
-#define SN_oqs_kem_default "oqs_kem_default"
-#define NID_oqs_kem_default 973
-
-#define SN_p256_oqs_kem_default "p256_oqs_kem_default"
-#define NID_p256_oqs_kem_default 974
-
 #define SN_frodo640shake "frodo640shake"
 #define NID_frodo640shake 977
 
@@ -4297,30 +4291,6 @@ extern "C" {
 
 #define SN_p521_frodo1344shake "p521_frodo1344shake"
 #define NID_p521_frodo1344shake 986
-
-#define SN_bike1l3cpa "bike1l3cpa"
-#define NID_bike1l3cpa 989
-
-#define SN_p384_bike1l3cpa "p384_bike1l3cpa"
-#define NID_p384_bike1l3cpa 990
-
-#define SN_bike1l1fo "bike1l1fo"
-#define NID_bike1l1fo 991
-
-#define SN_p256_bike1l1fo "p256_bike1l1fo"
-#define NID_p256_bike1l1fo 992
-
-#define SN_bike1l3fo "bike1l3fo"
-#define NID_bike1l3fo 993
-
-#define SN_p384_bike1l3fo "p384_bike1l3fo"
-#define NID_p384_bike1l3fo 994
-
-#define SN_bike1l1cpa "bike1l1cpa"
-#define NID_bike1l1cpa 995
-
-#define SN_p256_bike1l1cpa "p256_bike1l1cpa"
-#define NID_p256_bike1l1cpa 996
 
 #define SN_kyber512 "kyber512"
 #define NID_kyber512 997
@@ -4501,11 +4471,6 @@ extern "C" {
 
 #define SN_p521_hqc256 "p521_hqc256"
 #define NID_p521_hqc256 1141
-
-#define SN_oqs_sig_default "oqs_sig_default"
-#define LN_oqs_sig_default "oqs_sig_default"
-#define NID_oqs_sig_default 1142
-#define OBJ_oqs_sig_default 1L, 3L, 9999L, 1L, 1L
 
 #define SN_dilithium3 "dilithium3"
 #define LN_dilithium3 "dilithium3"
@@ -4796,6 +4761,18 @@ extern "C" {
 #define LN_dilithium5_aes "dilithium5_aes"
 #define NID_dilithium5_aes 1210
 #define OBJ_dilithium5_aes 1L, 3L, 6L, 1L, 4L, 1L, 2L, 267L, 11L, 8L, 7L
+
+#define SN_bikel1 "bikel1"
+#define NID_bikel1 1211
+
+#define SN_p256_bikel1 "p256_bikel1"
+#define NID_p256_bikel1 1212
+
+#define SN_bikel3 "bikel3"
+#define NID_bikel3 1213
+
+#define SN_p384_bikel3 "p384_bikel3"
+#define NID_p384_bikel3 1214
 
 
 #if defined(__cplusplus)
