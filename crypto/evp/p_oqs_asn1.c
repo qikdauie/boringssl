@@ -217,9 +217,6 @@ static size_t oqs_sig_size(const EVP_PKEY *pkey) {
 
 // the OIDs can also be found in the kObjectData array in crypto/obj/obj_dat.h
 ///// OQS_TEMPLATE_FRAGMENT_DEF_ASN1_METHODS_START
-DEFINE_OQS_ASN1_METHODS(oqs_sig_default, OQS_SIG_alg_default, EVP_PKEY_OQS_SIG_DEFAULT)
-DEFINE_OQS_PKEY_ASN1_METHOD(oqs_sig_default, EVP_PKEY_OQS_SIG_DEFAULT, OID(0x2B, 0xCE, 0x0F, 0x01, 0x01))
-
 DEFINE_OQS_ASN1_METHODS(dilithium2, OQS_SIG_alg_dilithium_2, EVP_PKEY_DILITHIUM2)
 DEFINE_OQS_PKEY_ASN1_METHOD(dilithium2, EVP_PKEY_DILITHIUM2, OID(0x2B, 0x06, 0x01, 0x04, 0x01, 0x02, 0x82, 0x0B, 0x07, 0x04, 0x04))
 

@@ -662,8 +662,6 @@ class CipherScorer {
       : aes_is_fine_(EVP_has_aes_hardware()),
         security_128_is_fine_(group_id != SSL_CURVE_CECPQ2 &&
 ///// OQS_TEMPLATE_FRAGMENT_LIST_CURVES_START
-                              group_id != SSL_CURVE_OQS_KEM_DEFAULT &&
-                              group_id != SSL_CURVE_P256_OQS_KEM_DEFAULT &&
                               group_id != SSL_CURVE_FRODO640AES &&
                               group_id != SSL_CURVE_P256_FRODO640AES &&
                               group_id != SSL_CURVE_FRODO640SHAKE &&
@@ -676,10 +674,10 @@ class CipherScorer {
                               group_id != SSL_CURVE_P521_FRODO1344AES &&
                               group_id != SSL_CURVE_FRODO1344SHAKE &&
                               group_id != SSL_CURVE_P521_FRODO1344SHAKE &&
-                              group_id != SSL_CURVE_BIKE1L1CPA &&
-                              group_id != SSL_CURVE_P256_BIKE1L1CPA &&
-                              group_id != SSL_CURVE_BIKE1L3CPA &&
-                              group_id != SSL_CURVE_P384_BIKE1L3CPA &&
+                              group_id != SSL_CURVE_BIKEL1 &&
+                              group_id != SSL_CURVE_P256_BIKEL1 &&
+                              group_id != SSL_CURVE_BIKEL3 &&
+                              group_id != SSL_CURVE_P384_BIKEL3 &&
                               group_id != SSL_CURVE_KYBER512 &&
                               group_id != SSL_CURVE_P256_KYBER512 &&
                               group_id != SSL_CURVE_KYBER768 &&
@@ -716,10 +714,6 @@ class CipherScorer {
                               group_id != SSL_CURVE_P384_SIKEP610 &&
                               group_id != SSL_CURVE_SIKEP751 &&
                               group_id != SSL_CURVE_P521_SIKEP751 &&
-                              group_id != SSL_CURVE_BIKE1L1FO &&
-                              group_id != SSL_CURVE_P256_BIKE1L1FO &&
-                              group_id != SSL_CURVE_BIKE1L3FO &&
-                              group_id != SSL_CURVE_P384_BIKE1L3FO &&
                               group_id != SSL_CURVE_KYBER90S512 &&
                               group_id != SSL_CURVE_P256_KYBER90S512 &&
                               group_id != SSL_CURVE_KYBER90S768 &&

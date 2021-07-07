@@ -62,11 +62,10 @@ If an algorithm is provided by liboqs but is not listed below, it might still be
 
 The following quantum-safe algorithms from liboqs are supported (assuming they have been enabled in liboqs):
 
-- `oqs_kem_default` (see [here](https://github.com/open-quantum-safe/boringssl/wiki/Using-liboqs-algorithms-not-in-the-fork#oqsdefault) for what this denotes)
 <!--- OQS_TEMPLATE_FRAGMENT_LIST_KEXS_START -->
-- **BIKE**: `bike1l1cpa`, `bike1l3cpa`, `bike1l1fo`, `bike1l3fo`
+- **BIKE**: `bikel1`, `bikel3`
 - **CRYSTALS-Kyber**: `kyber512`, `kyber768`, `kyber1024`, `kyber90s512`, `kyber90s768`, `kyber90s1024`
-- **FrodoKEM**: `frodo640aes`, `frodo640shake`, `frodo976aes`, `frodo976shake`, `frodo1344aes`, `frodo1344shake`
+- **FrodoKEM**: `frodo640shake`, `frodo976aes`, `frodo976shake`, `frodo1344aes`, `frodo1344shake`
 - **HQC**: `hqc128`, `hqc192`, `hqc256`†
 - **NTRU**: `ntru_hps2048509`, `ntru_hps2048677`, `ntru_hps4096821`, `ntru_hrss701`
 - **NTRU-Prime**: `ntrulpr653`, `ntrulpr761`, `ntrulpr857`, `sntrup653`, `sntrup761`, `sntrup857`
@@ -89,9 +88,8 @@ Note that algorithms marked with a dagger (†) have large stack usage and may c
 
 The following quantum-safe digital signature algorithms from liboqs are supported (assuming they have been enabled in liboqs):
 
-- `oqs_sig_default` (see [here](https://github.com/open-quantum-safe/boringssl/wiki/Using-liboqs-algorithms-not-in-the-fork#oqsdefault) for what this denotes)
 <!--- OQS_TEMPLATE_FRAGMENT_LIST_SIGS_START -->
-- **CRYSTALS-DILITHIUM**: `dilithium2`, `dilithium3`, `dilithium5`, `dilithium2_aes`, `dilithium3_aes`, `dilithium5_aes`
+- **CRYSTALS-DILITHIUM**: `dilithium3`, `dilithium5`, `dilithium2_aes`, `dilithium3_aes`, `dilithium5_aes`
 - **Falcon**: `falcon512`, `falcon1024`
 - **Picnic**: `picnicl1fs`, `picnicl1ur`, `picnicl1full`, `picnic3l1`, `picnic3l3`, `picnic3l5`
 - **Rainbow**: `rainbowIclassic`, `rainbowIcircumzenithal`, `rainbowIcompressed`, `rainbowIIIclassic`, `rainbowIIIcircumzenithal`, `rainbowIIIcompressed`, `rainbowVclassic`, `rainbowVcircumzenithal`, `rainbowVcompressed`

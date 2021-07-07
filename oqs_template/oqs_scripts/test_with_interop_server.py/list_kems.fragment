@@ -1,5 +1,4 @@
 
-        'p256_oqs_kem_default',
 {%- for kem in config['kems'][1:] %}
         '{{ kem['name'] }}',
         {%- for classical_alg in kem['mix_with'] %}

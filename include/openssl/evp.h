@@ -179,7 +179,6 @@ OPENSSL_EXPORT EC_KEY *EVP_PKEY_get1_EC_KEY(const EVP_PKEY *pkey);
 #define EVP_PKEY_ED25519 NID_ED25519
 #define EVP_PKEY_X25519 NID_X25519
 ///// OQS_TEMPLATE_FRAGMENT_DEFINE_EVP_PKEYS_START
-#define EVP_PKEY_OQS_SIG_DEFAULT NID_oqs_sig_default
 #define EVP_PKEY_DILITHIUM2 NID_dilithium2
 #define EVP_PKEY_DILITHIUM3 NID_dilithium3
 #define EVP_PKEY_DILITHIUM5 NID_dilithium5
@@ -241,7 +240,6 @@ OPENSSL_EXPORT EC_KEY *EVP_PKEY_get1_EC_KEY(const EVP_PKEY *pkey);
 #define EVP_PKEY_SPHINCSSHAKE256256SSIMPLE NID_sphincsshake256256ssimple
 
 #define IS_OQS_PKEY(pkey_id) ( \
-   (pkey_id == NID_oqs_sig_default) || \
    (pkey_id == NID_dilithium2) || \
    (pkey_id == NID_dilithium3) || \
    (pkey_id == NID_dilithium5) || \
@@ -301,15 +299,14 @@ OPENSSL_EXPORT EC_KEY *EVP_PKEY_get1_EC_KEY(const EVP_PKEY *pkey);
    (pkey_id == NID_sphincsshake256256fsimple) || \
    (pkey_id == NID_sphincsshake256256srobust) || \
    (pkey_id == NID_sphincsshake256256ssimple) || \
-   (pkey_id == NID_oqs_kem_default) || \
    (pkey_id == NID_frodo640aes) || \
    (pkey_id == NID_frodo640shake) || \
    (pkey_id == NID_frodo976aes) || \
    (pkey_id == NID_frodo976shake) || \
    (pkey_id == NID_frodo1344aes) || \
    (pkey_id == NID_frodo1344shake) || \
-   (pkey_id == NID_bike1l1cpa) || \
-   (pkey_id == NID_bike1l3cpa) || \
+   (pkey_id == NID_bikel1) || \
+   (pkey_id == NID_bikel3) || \
    (pkey_id == NID_kyber512) || \
    (pkey_id == NID_kyber768) || \
    (pkey_id == NID_kyber1024) || \
@@ -328,8 +325,6 @@ OPENSSL_EXPORT EC_KEY *EVP_PKEY_get1_EC_KEY(const EVP_PKEY *pkey);
    (pkey_id == NID_sikep503) || \
    (pkey_id == NID_sikep610) || \
    (pkey_id == NID_sikep751) || \
-   (pkey_id == NID_bike1l1fo) || \
-   (pkey_id == NID_bike1l3fo) || \
    (pkey_id == NID_kyber90s512) || \
    (pkey_id == NID_kyber90s768) || \
    (pkey_id == NID_kyber90s1024) || \

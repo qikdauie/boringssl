@@ -586,8 +586,6 @@ CONSTEXPR_ARRAY NamedGroup kNamedGroups[] = {
     {NID_X25519, SSL_CURVE_X25519, "X25519", "x25519"},
     {NID_CECPQ2, SSL_CURVE_CECPQ2, "CECPQ2", "CECPQ2"},
 ///// OQS_TEMPLATE_FRAGMENT_DEF_NAMEDGROUPS_START
-    {NID_oqs_kem_default, SSL_CURVE_OQS_KEM_DEFAULT, "oqs_kem_default", "oqs_kem_default"},
-    {NID_p256_oqs_kem_default, SSL_CURVE_P256_OQS_KEM_DEFAULT, "p256_oqs_kem_default", "p256_oqs_kem_default"},
     {NID_frodo640aes, SSL_CURVE_FRODO640AES, "frodo640aes", "frodo640aes"},
     {NID_p256_frodo640aes, SSL_CURVE_P256_FRODO640AES, "p256_frodo640aes", "p256_frodo640aes"},
     {NID_frodo640shake, SSL_CURVE_FRODO640SHAKE, "frodo640shake", "frodo640shake"},
@@ -600,10 +598,10 @@ CONSTEXPR_ARRAY NamedGroup kNamedGroups[] = {
     {NID_p521_frodo1344aes, SSL_CURVE_P521_FRODO1344AES, "p521_frodo1344aes", "p521_frodo1344aes"},
     {NID_frodo1344shake, SSL_CURVE_FRODO1344SHAKE, "frodo1344shake", "frodo1344shake"},
     {NID_p521_frodo1344shake, SSL_CURVE_P521_FRODO1344SHAKE, "p521_frodo1344shake", "p521_frodo1344shake"},
-    {NID_bike1l1cpa, SSL_CURVE_BIKE1L1CPA, "bike1l1cpa", "bike1l1cpa"},
-    {NID_p256_bike1l1cpa, SSL_CURVE_P256_BIKE1L1CPA, "p256_bike1l1cpa", "p256_bike1l1cpa"},
-    {NID_bike1l3cpa, SSL_CURVE_BIKE1L3CPA, "bike1l3cpa", "bike1l3cpa"},
-    {NID_p384_bike1l3cpa, SSL_CURVE_P384_BIKE1L3CPA, "p384_bike1l3cpa", "p384_bike1l3cpa"},
+    {NID_bikel1, SSL_CURVE_BIKEL1, "bikel1", "bikel1"},
+    {NID_p256_bikel1, SSL_CURVE_P256_BIKEL1, "p256_bikel1", "p256_bikel1"},
+    {NID_bikel3, SSL_CURVE_BIKEL3, "bikel3", "bikel3"},
+    {NID_p384_bikel3, SSL_CURVE_P384_BIKEL3, "p384_bikel3", "p384_bikel3"},
     {NID_kyber512, SSL_CURVE_KYBER512, "kyber512", "kyber512"},
     {NID_p256_kyber512, SSL_CURVE_P256_KYBER512, "p256_kyber512", "p256_kyber512"},
     {NID_kyber768, SSL_CURVE_KYBER768, "kyber768", "kyber768"},
@@ -640,10 +638,6 @@ CONSTEXPR_ARRAY NamedGroup kNamedGroups[] = {
     {NID_p384_sikep610, SSL_CURVE_P384_SIKEP610, "p384_sikep610", "p384_sikep610"},
     {NID_sikep751, SSL_CURVE_SIKEP751, "sikep751", "sikep751"},
     {NID_p521_sikep751, SSL_CURVE_P521_SIKEP751, "p521_sikep751", "p521_sikep751"},
-    {NID_bike1l1fo, SSL_CURVE_BIKE1L1FO, "bike1l1fo", "bike1l1fo"},
-    {NID_p256_bike1l1fo, SSL_CURVE_P256_BIKE1L1FO, "p256_bike1l1fo", "p256_bike1l1fo"},
-    {NID_bike1l3fo, SSL_CURVE_BIKE1L3FO, "bike1l3fo", "bike1l3fo"},
-    {NID_p384_bike1l3fo, SSL_CURVE_P384_BIKE1L3FO, "p384_bike1l3fo", "p384_bike1l3fo"},
     {NID_kyber90s512, SSL_CURVE_KYBER90S512, "kyber90s512", "kyber90s512"},
     {NID_p256_kyber90s512, SSL_CURVE_P256_KYBER90S512, "p256_kyber90s512", "p256_kyber90s512"},
     {NID_kyber90s768, SSL_CURVE_KYBER90S768, "kyber90s768", "kyber90s768"},
@@ -696,16 +690,6 @@ UniquePtr<SSLKeyShare> SSLKeyShare::Create(uint16_t group_id) {
     case SSL_CURVE_CECPQ2:
       return UniquePtr<SSLKeyShare>(New<CECPQ2KeyShare>());
 ///// OQS_TEMPLATE_FRAGMENT_HANDLE_GROUP_IDS_START
-    case SSL_CURVE_OQS_KEM_DEFAULT:
-      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_default))
-          return UniquePtr<SSLKeyShare>(New<OQSKeyShare>(SSL_CURVE_OQS_KEM_DEFAULT, OQS_KEM_alg_default));
-      else
-          return nullptr;
-    case SSL_CURVE_P256_OQS_KEM_DEFAULT:
-      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_default))
-          return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P256_OQS_KEM_DEFAULT, SSL_CURVE_SECP256R1, OQS_KEM_alg_default));
-      else
-          return nullptr;
     case SSL_CURVE_FRODO640AES:
       if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_frodokem_640_aes))
           return UniquePtr<SSLKeyShare>(New<OQSKeyShare>(SSL_CURVE_FRODO640AES, OQS_KEM_alg_frodokem_640_aes));
@@ -766,24 +750,24 @@ UniquePtr<SSLKeyShare> SSLKeyShare::Create(uint16_t group_id) {
           return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P521_FRODO1344SHAKE, SSL_CURVE_SECP521R1, OQS_KEM_alg_frodokem_1344_shake));
       else
           return nullptr;
-    case SSL_CURVE_BIKE1L1CPA:
-      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_bike1_l1_cpa))
-          return UniquePtr<SSLKeyShare>(New<OQSKeyShare>(SSL_CURVE_BIKE1L1CPA, OQS_KEM_alg_bike1_l1_cpa));
+    case SSL_CURVE_BIKEL1:
+      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_bike_l1))
+          return UniquePtr<SSLKeyShare>(New<OQSKeyShare>(SSL_CURVE_BIKEL1, OQS_KEM_alg_bike_l1));
       else
           return nullptr;
-    case SSL_CURVE_P256_BIKE1L1CPA:
-      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_bike1_l1_cpa))
-          return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P256_BIKE1L1CPA, SSL_CURVE_SECP256R1, OQS_KEM_alg_bike1_l1_cpa));
+    case SSL_CURVE_P256_BIKEL1:
+      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_bike_l1))
+          return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P256_BIKEL1, SSL_CURVE_SECP256R1, OQS_KEM_alg_bike_l1));
       else
           return nullptr;
-    case SSL_CURVE_BIKE1L3CPA:
-      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_bike1_l3_cpa))
-          return UniquePtr<SSLKeyShare>(New<OQSKeyShare>(SSL_CURVE_BIKE1L3CPA, OQS_KEM_alg_bike1_l3_cpa));
+    case SSL_CURVE_BIKEL3:
+      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_bike_l3))
+          return UniquePtr<SSLKeyShare>(New<OQSKeyShare>(SSL_CURVE_BIKEL3, OQS_KEM_alg_bike_l3));
       else
           return nullptr;
-    case SSL_CURVE_P384_BIKE1L3CPA:
-      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_bike1_l3_cpa))
-          return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P384_BIKE1L3CPA, SSL_CURVE_SECP384R1, OQS_KEM_alg_bike1_l3_cpa));
+    case SSL_CURVE_P384_BIKEL3:
+      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_bike_l3))
+          return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P384_BIKEL3, SSL_CURVE_SECP384R1, OQS_KEM_alg_bike_l3));
       else
           return nullptr;
     case SSL_CURVE_KYBER512:
@@ -964,26 +948,6 @@ UniquePtr<SSLKeyShare> SSLKeyShare::Create(uint16_t group_id) {
     case SSL_CURVE_P521_SIKEP751:
       if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_sike_p751))
           return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P521_SIKEP751, SSL_CURVE_SECP521R1, OQS_KEM_alg_sike_p751));
-      else
-          return nullptr;
-    case SSL_CURVE_BIKE1L1FO:
-      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_bike1_l1_fo))
-          return UniquePtr<SSLKeyShare>(New<OQSKeyShare>(SSL_CURVE_BIKE1L1FO, OQS_KEM_alg_bike1_l1_fo));
-      else
-          return nullptr;
-    case SSL_CURVE_P256_BIKE1L1FO:
-      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_bike1_l1_fo))
-          return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P256_BIKE1L1FO, SSL_CURVE_SECP256R1, OQS_KEM_alg_bike1_l1_fo));
-      else
-          return nullptr;
-    case SSL_CURVE_BIKE1L3FO:
-      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_bike1_l3_fo))
-          return UniquePtr<SSLKeyShare>(New<OQSKeyShare>(SSL_CURVE_BIKE1L3FO, OQS_KEM_alg_bike1_l3_fo));
-      else
-          return nullptr;
-    case SSL_CURVE_P384_BIKE1L3FO:
-      if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_bike1_l3_fo))
-          return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P384_BIKE1L3FO, SSL_CURVE_SECP384R1, OQS_KEM_alg_bike1_l3_fo));
       else
           return nullptr;
     case SSL_CURVE_KYBER90S512:

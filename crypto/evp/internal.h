@@ -268,7 +268,6 @@ extern const EVP_PKEY_ASN1_METHOD rsa_asn1_meth;
 extern const EVP_PKEY_ASN1_METHOD ed25519_asn1_meth;
 extern const EVP_PKEY_ASN1_METHOD x25519_asn1_meth;
 ///// OQS_TEMPLATE_FRAGMENT_DECLARE_ASN1_METHS_START
-extern const EVP_PKEY_ASN1_METHOD oqs_sig_default_asn1_meth;
 extern const EVP_PKEY_ASN1_METHOD dilithium2_asn1_meth;
 extern const EVP_PKEY_ASN1_METHOD dilithium3_asn1_meth;
 extern const EVP_PKEY_ASN1_METHOD dilithium5_asn1_meth;
@@ -335,7 +334,6 @@ extern const EVP_PKEY_METHOD ec_pkey_meth;
 extern const EVP_PKEY_METHOD ed25519_pkey_meth;
 extern const EVP_PKEY_METHOD x25519_pkey_meth;
 ///// OQS_TEMPLATE_FRAGMENT_DECLARE_PKEY_METHS_START
-extern const EVP_PKEY_METHOD oqs_sig_default_pkey_meth;
 extern const EVP_PKEY_METHOD dilithium2_pkey_meth;
 extern const EVP_PKEY_METHOD dilithium3_pkey_meth;
 extern const EVP_PKEY_METHOD dilithium5_pkey_meth;
