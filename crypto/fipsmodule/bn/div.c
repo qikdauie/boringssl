@@ -64,10 +64,10 @@
 #include "internal.h"
 
 
-#if !defined(BN_CAN_DIVIDE_ULLONG) && !defined(BN_CAN_USE_INLINE_ASM)
 // bn_div_words divides a double-width |h|,|l| by |d| and returns the result,
 // which must fit in a |BN_ULONG|.
-static BN_ULONG bn_div_words(BN_ULONG h, BN_ULONG l, BN_ULONG d) {
+OPENSSL_UNUSED static BN_ULONG bn_div_words(BN_ULONG h, BN_ULONG l,
+                                            BN_ULONG d) {
   BN_ULONG dh, dl, q, ret = 0, th, tl, t;
   int i, count = 2;
 
@@ -135,7 +135,6 @@ static BN_ULONG bn_div_words(BN_ULONG h, BN_ULONG l, BN_ULONG d) {
   ret |= q;
   return ret;
 }
-#endif  // !defined(BN_CAN_DIVIDE_ULLONG) && !defined(BN_CAN_USE_INLINE_ASM)
 
 static inline void bn_div_rem_words(BN_ULONG *quotient_out, BN_ULONG *rem_out,
                                     BN_ULONG n0, BN_ULONG n1, BN_ULONG d0) {
@@ -286,8 +285,10 @@ int BN_div(BIGNUM *quotient, BIGNUM *rem, const BIGNUM *numerator,
   // pointer to the 'top' of snum
   wnump = &(snum->d[num_n - 1]);
 
-  // Setup to 'res'
-  res->neg = (numerator->neg ^ divisor->neg);
+  // Setup |res|. |numerator| and |res| may alias, so we save |numerator->neg|
+  // for later.
+  const int numerator_neg = numerator->neg;
+  res->neg = (numerator_neg ^ divisor->neg);
   if (!bn_wexpand(res, loop + 1)) {
     goto err;
   }
@@ -380,14 +381,11 @@ int BN_div(BIGNUM *quotient, BIGNUM *rem, const BIGNUM *numerator,
   bn_set_minimal_width(snum);
 
   if (rem != NULL) {
-    // Keep a copy of the neg flag in numerator because if |rem| == |numerator|
-    // |BN_rshift| will overwrite it.
-    int neg = numerator->neg;
     if (!BN_rshift(rem, snum, norm_shift)) {
       goto err;
     }
     if (!BN_is_zero(rem)) {
-      rem->neg = neg;
+      rem->neg = numerator_neg;
     }
   }
 

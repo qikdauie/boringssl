@@ -111,7 +111,7 @@ We regularly test the fork on Ubuntu 18.04 and above. Support for other platform
 On **Ubuntu**, you need to install the following packages:
 
 ```
-sudo apt install cmake gcc ninja-build libunwind-dev pkg-config python3 python3-psutil
+sudo apt install cmake gcc ninja-build libunwind-dev pkg-config python3 python3-psutil golang-go
 ```
 
 You will also need the latest version of the toolchain for the Go programming language, available [here](https://golang.org/dl/)
@@ -177,7 +177,7 @@ tool/bssl client -curves <KEX> -connect localhost:4433
 
 where `<KEX>` is one of the quantum-safe or hybrid key exchange algorithms listed in the [Supported Algorithms](#supported-algorithms) section above.
 
-You can also simply run `python3 oqs_scripts/oqs_try_handshake.py`, which will pick a random key-exchange and signature algorithm and will attempt a handshake between the TLS server and client with the chosen algorithms.
+You can also simply run `python3 oqs_scripts/try_handshake.py`, which will pick a random key-exchange and signature algorithm and will attempt a handshake between the TLS server and client with the chosen algorithms.
 
 ## Team
 
