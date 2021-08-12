@@ -952,8 +952,7 @@ def main(platforms):
       'tool_headers': tool_h_files,
       'test_support': test_support_c_files,
       'test_support_headers': test_support_h_files,
-      // OQS question: Why sorted?
-      'urandom_test': sorted(urandom_test_files),
+      'urandom_test': urandom_test_files,
       'oqs_headers': oqs_h_files,
   }
 
