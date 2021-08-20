@@ -48,17 +48,23 @@ if(NOT OPENSSL_NO_ASM)
       endforeach()
     endif()
   else()
-    if(${ARCH} STREQUAL "x86_64")
-      set(PERLASM_STYLE nasm)
+    if(${ARCH} STREQUAL "aarch64")
+      set(PERLASM_STYLE win64)
+      set(ASM_EXT S)
+      enable_language(ASM)
     else()
-      set(PERLASM_STYLE win32n)
-      set(PERLASM_FLAGS "-DOPENSSL_IA32_SSE2")
-    endif()
-    set(CMAKE_ASM_NASM_FLAGS "${CMAKE_ASM_NASM_FLAGS} -gcv8")
+      if(${ARCH} STREQUAL "x86_64")
+        set(PERLASM_STYLE nasm)
+      else()
+        set(PERLASM_STYLE win32n)
+        set(PERLASM_FLAGS "-DOPENSSL_IA32_SSE2")
+      endif()
+      set(CMAKE_ASM_NASM_FLAGS "${CMAKE_ASM_NASM_FLAGS} -gcv8")
 
-    # On Windows, we use the NASM output, specifically built with Yasm.
-    set(ASM_EXT asm)
-    enable_language(ASM_NASM)
+      # On Windows, we use the NASM output.
+      set(ASM_EXT asm)
+      enable_language(ASM_NASM)
+    endif()
   endif()
 endif()
 
@@ -235,6 +241,7 @@ add_library(
   bio/printf.c
   bio/socket.c
   bio/socket_helper.c
+  blake2/blake2.c
   bn_extra/bn_asn1.c
   bn_extra/convert.c
   buf/buf.c
@@ -259,6 +266,7 @@ add_library(
   conf/conf.c
   cpu-aarch64-fuchsia.c
   cpu-aarch64-linux.c
+  cpu-aarch64-win.c
   cpu-arm-linux.c
   cpu-arm.c
   cpu-intel.c
@@ -266,10 +274,8 @@ add_library(
   crypto.c
   curve25519/curve25519.c
   curve25519/spake25519.c
-  dh/dh.c
-  dh/params.c
-  dh/check.c
-  dh/dh_asn1.c
+  dh_extra/params.c
+  dh_extra/dh_asn1.c
   digest_extra/digest_extra.c
   dsa/dsa.c
   dsa/dsa_asn1.c
@@ -302,6 +308,7 @@ add_library(
   evp/sign.c
   ex_data.c
   hkdf/hkdf.c
+  hpke/hpke.c
   hrss/hrss.c
   lhash/lhash.c
   mem.c
@@ -327,6 +334,7 @@ add_library(
   rand_extra/deterministic.c
   rand_extra/forkunsafe.c
   rand_extra/fuchsia.c
+  rand_extra/passive.c
   rand_extra/rand_extra.c
   rand_extra/windows.c
   rc4/rc4.c
@@ -342,6 +350,7 @@ add_library(
   thread_win.c
   trust_token/pmbtoken.c
   trust_token/trust_token.c
+  trust_token/voprf.c
   x509/a_digest.c
   x509/a_sign.c
   x509/a_strex.c
@@ -364,7 +373,6 @@ add_library(
   x509/x509_ext.c
   x509/x509_lu.c
   x509/x509_obj.c
-  x509/x509_r2x.c
   x509/x509_req.c
   x509/x509_set.c
   x509/x509_trs.c
@@ -417,12 +425,10 @@ add_library(
   x509v3/v3_pci.c
   x509v3/v3_pcia.c
   x509v3/v3_pcons.c
-  x509v3/v3_pku.c
   x509v3/v3_pmaps.c
   x509v3/v3_prn.c
   x509v3/v3_purp.c
   x509v3/v3_skey.c
-  x509v3/v3_sxnet.c
   x509v3/v3_utl.c
 
   $<TARGET_OBJECTS:fipsmodule>
@@ -459,7 +465,7 @@ endif()
 
 SET_TARGET_PROPERTIES(crypto PROPERTIES LINKER_LANGUAGE C)
 
-if(NOT MSVC AND NOT ANDROID)
+if(NOT WIN32 AND NOT ANDROID)
   target_link_libraries(crypto pthread)
 endif()
 
@@ -490,21 +496,24 @@ add_executable(
   abi_self_test.cc
   asn1/asn1_test.cc
   base64/base64_test.cc
-  buf/buf_test.cc
   bio/bio_test.cc
+  blake2/blake2_test.cc
+  buf/buf_test.cc
   bytestring/bytestring_test.cc
   chacha/chacha_test.cc
   cipher_extra/aead_test.cc
   cipher_extra/cipher_test.cc
   cmac/cmac_test.cc
   compiler_test.cc
+  conf/conf_test.cc
   constant_time_test.cc
   cpu-arm-linux_test.cc
+  crypto_test.cc
   curve25519/ed25519_test.cc
   curve25519/spake25519_test.cc
   curve25519/x25519_test.cc
   ecdh_extra/ecdh_test.cc
-  dh/dh_test.cc
+  dh_extra/dh_test.cc
   digest_extra/digest_test.cc
   dsa/dsa_test.cc
   err/err_test.cc
@@ -523,6 +532,7 @@ add_executable(
   fipsmodule/rand/fork_detect_test.cc
   fipsmodule/sha/sha_test.cc
   hkdf/hkdf_test.cc
+  hpke/hpke_test.cc
   hmac_extra/hmac_test.cc
   hrss/hrss_test.cc
   impl_dispatch_test.cc

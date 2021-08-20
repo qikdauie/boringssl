@@ -58,11 +58,14 @@
 
 #include <string.h>
 
-#include <openssl/asn1.h>
+#include <openssl/blake2.h>
 #include <openssl/bytestring.h>
+#include <openssl/obj.h>
 #include <openssl/nid.h>
 
+#include "../asn1/internal.h"
 #include "../internal.h"
+#include "../fipsmodule/digest/internal.h"
 
 
 struct nid_to_digest {
@@ -150,13 +153,14 @@ static const EVP_MD *cbs_to_md(const CBS *cbs) {
 }
 
 const EVP_MD *EVP_get_digestbyobj(const ASN1_OBJECT *obj) {
-  // Handle objects with no corresponding OID.
+  // Handle objects with no corresponding OID. Note we don't use |OBJ_obj2nid|
+  // here to avoid pulling in the OID table.
   if (obj->nid != NID_undef) {
     return EVP_get_digestbynid(obj->nid);
   }
 
   CBS cbs;
-  CBS_init(&cbs, obj->data, obj->length);
+  CBS_init(&cbs, OBJ_get0_data(obj), OBJ_length(obj));
   return cbs_to_md(&cbs);
 }
 
@@ -238,3 +242,26 @@ const EVP_MD *EVP_get_digestbyname(const char *name) {
 
   return NULL;
 }
+
+static void blake2b256_init(EVP_MD_CTX *ctx) { BLAKE2B256_Init(ctx->md_data); }
+
+static void blake2b256_update(EVP_MD_CTX *ctx, const void *data, size_t len) {
+  BLAKE2B256_Update(ctx->md_data, data, len);
+}
+
+static void blake2b256_final(EVP_MD_CTX *ctx, uint8_t *md) {
+  BLAKE2B256_Final(md, ctx->md_data);
+}
+
+static const EVP_MD evp_md_blake2b256 = {
+  NID_undef,
+  BLAKE2B256_DIGEST_LENGTH,
+  0,
+  blake2b256_init,
+  blake2b256_update,
+  blake2b256_final,
+  BLAKE2B_CBLOCK,
+  sizeof(BLAKE2B_CTX),
+};
+
+const EVP_MD *EVP_blake2b256(void) { return &evp_md_blake2b256; }
