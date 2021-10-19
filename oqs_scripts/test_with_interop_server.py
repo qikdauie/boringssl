@@ -80,12 +80,16 @@ kexs = [
         'p384_ntrulpr761',
         'ntrulpr857',
         'p384_ntrulpr857',
+        'ntrulpr1277',
+        'p521_ntrulpr1277',
         'sntrup653',
         'p256_sntrup653',
         'sntrup761',
         'p384_sntrup761',
         'sntrup857',
         'p384_sntrup857',
+        'sntrup1277',
+        'p521_sntrup1277',
 ##### OQS_TEMPLATE_FRAGMENT_LIST_KEMS_END
 ]
 

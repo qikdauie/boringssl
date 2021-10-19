@@ -69,7 +69,8 @@ populate('crypto/obj/obj_xref.c', config, '/////')
 # both
 populate('crypto/obj/objects.txt', config, '#####')
 populate('ssl/ssl_test.cc', config, '/////')
-populate('ssl/t1_lib.cc', config, '/////')
+# file gone??
+# populate('ssl/t1_lib.cc', config, '/////')
 populate('include/openssl/ssl.h', config, '/////')
 populate('oqs_scripts/try_handshake.py', config, '#####')
 populate('oqs_scripts/test_with_interop_server.py', config, '#####')

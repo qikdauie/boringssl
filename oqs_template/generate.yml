@@ -220,6 +220,12 @@ kems:
     oqs_meth: 'OQS_KEM_alg_ntruprime_ntrulpr857'
   -
     family: 'NTRU-Prime'
+    name: 'ntrulpr1277'
+    nid: '0x0241'
+    mix_with: [{'name': 'p521', 'mix_nid':'0x2F41', 'nid':'SSL_CURVE_SECP521R1'}]
+    oqs_meth: 'OQS_KEM_alg_ntruprime_ntrulpr1277'
+  -
+    family: 'NTRU-Prime'
     name: 'sntrup653'
     nid: '0x0232'
     mix_with: [{'name': 'p256', 'mix_nid':'0x2F32', 'nid':'SSL_CURVE_SECP256R1'}]
@@ -236,6 +242,12 @@ kems:
     nid: '0x0234'
     mix_with: [{'name': 'p384', 'mix_nid':'0x2F34', 'nid':'SSL_CURVE_SECP384R1'}]
     oqs_meth: 'OQS_KEM_alg_ntruprime_sntrup857'
+  -
+    family: 'NTRU-Prime'
+    name: 'sntrup1277'
+    nid: '0x0242'
+    mix_with: [{'name': 'p521', 'mix_nid':'0x2F42', 'nid':'SSL_CURVE_SECP521R1'}]
+    oqs_meth: 'OQS_KEM_alg_ntruprime_sntrup1277'
 
 
 # N.B: Code points and OIDs must match those used

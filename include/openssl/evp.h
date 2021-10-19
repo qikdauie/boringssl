@@ -335,9 +335,11 @@ OPENSSL_EXPORT EC_KEY *EVP_PKEY_get1_EC_KEY(const EVP_PKEY *pkey);
    (pkey_id == NID_ntrulpr653) || \
    (pkey_id == NID_ntrulpr761) || \
    (pkey_id == NID_ntrulpr857) || \
+   (pkey_id == NID_ntrulpr1277) || \
    (pkey_id == NID_sntrup653) || \
    (pkey_id == NID_sntrup761) || \
    (pkey_id == NID_sntrup857) || \
+   (pkey_id == NID_sntrup1277) || \
 0 )
 ///// OQS_TEMPLATE_FRAGMENT_DEFINE_EVP_PKEYS_END
 
