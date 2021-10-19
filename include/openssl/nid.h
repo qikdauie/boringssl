@@ -4774,6 +4774,18 @@ extern "C" {
 #define SN_p384_bikel3 "p384_bikel3"
 #define NID_p384_bikel3 1214
 
+#define SN_ntrulpr1277 "ntrulpr1277"
+#define NID_ntrulpr1277 1215
+
+#define SN_p521_ntrulpr1277 "p521_ntrulpr1277"
+#define NID_p521_ntrulpr1277 1216
+
+#define SN_sntrup1277 "sntrup1277"
+#define NID_sntrup1277 1217
+
+#define SN_p521_sntrup1277 "p521_sntrup1277"
+#define NID_p521_sntrup1277 1218
+
 
 #if defined(__cplusplus)
 } /* extern C */
