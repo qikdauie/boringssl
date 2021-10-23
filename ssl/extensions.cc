@@ -273,7 +273,7 @@ static bool is_post_quantum_group(uint16_t id) {
          id == SSL_CURVE_NTRULPR653 ||
          id == SSL_CURVE_P256_NTRULPR653 ||
          id == SSL_CURVE_NTRULPR761 ||
-         id == SSL_CURVE_P384_NTRULPR761 ||
+         id == SSL_CURVE_P256_NTRULPR761 ||
          id == SSL_CURVE_NTRULPR857 ||
          id == SSL_CURVE_P384_NTRULPR857 ||
          id == SSL_CURVE_NTRULPR1277 ||
@@ -281,7 +281,7 @@ static bool is_post_quantum_group(uint16_t id) {
          id == SSL_CURVE_SNTRUP653 ||
          id == SSL_CURVE_P256_SNTRUP653 ||
          id == SSL_CURVE_SNTRUP761 ||
-         id == SSL_CURVE_P384_SNTRUP761 ||
+         id == SSL_CURVE_P256_SNTRUP761 ||
          id == SSL_CURVE_SNTRUP857 ||
          id == SSL_CURVE_P384_SNTRUP857 ||
          id == SSL_CURVE_SNTRUP1277 ||
@@ -468,7 +468,7 @@ static const uint16_t kAllSupportedGroups[] = {
     SSL_CURVE_HQC256,
     SSL_CURVE_P256_NTRULPR653,
     SSL_CURVE_NTRULPR653,
-    SSL_CURVE_P384_NTRULPR761,
+    SSL_CURVE_P256_NTRULPR761,
     SSL_CURVE_NTRULPR761,
     SSL_CURVE_P384_NTRULPR857,
     SSL_CURVE_NTRULPR857,
@@ -476,7 +476,7 @@ static const uint16_t kAllSupportedGroups[] = {
     SSL_CURVE_NTRULPR1277,
     SSL_CURVE_P256_SNTRUP653,
     SSL_CURVE_SNTRUP653,
-    SSL_CURVE_P384_SNTRUP761,
+    SSL_CURVE_P256_SNTRUP761,
     SSL_CURVE_SNTRUP761,
     SSL_CURVE_P384_SNTRUP857,
     SSL_CURVE_SNTRUP857,

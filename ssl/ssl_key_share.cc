@@ -644,7 +644,7 @@ CONSTEXPR_ARRAY NamedGroup kNamedGroups[] = {
     {NID_ntrulpr653, SSL_CURVE_NTRULPR653, "ntrulpr653", "ntrulpr653"},
     {NID_p256_ntrulpr653, SSL_CURVE_P256_NTRULPR653, "p256_ntrulpr653", "p256_ntrulpr653"},
     {NID_ntrulpr761, SSL_CURVE_NTRULPR761, "ntrulpr761", "ntrulpr761"},
-    {NID_p384_ntrulpr761, SSL_CURVE_P384_NTRULPR761, "p384_ntrulpr761", "p384_ntrulpr761"},
+    {NID_p256_ntrulpr761, SSL_CURVE_P256_NTRULPR761, "p256_ntrulpr761", "p256_ntrulpr761"},
     {NID_ntrulpr857, SSL_CURVE_NTRULPR857, "ntrulpr857", "ntrulpr857"},
     {NID_p384_ntrulpr857, SSL_CURVE_P384_NTRULPR857, "p384_ntrulpr857", "p384_ntrulpr857"},
     {NID_ntrulpr1277, SSL_CURVE_NTRULPR1277, "ntrulpr1277", "ntrulpr1277"},
@@ -652,7 +652,7 @@ CONSTEXPR_ARRAY NamedGroup kNamedGroups[] = {
     {NID_sntrup653, SSL_CURVE_SNTRUP653, "sntrup653", "sntrup653"},
     {NID_p256_sntrup653, SSL_CURVE_P256_SNTRUP653, "p256_sntrup653", "p256_sntrup653"},
     {NID_sntrup761, SSL_CURVE_SNTRUP761, "sntrup761", "sntrup761"},
-    {NID_p384_sntrup761, SSL_CURVE_P384_SNTRUP761, "p384_sntrup761", "p384_sntrup761"},
+    {NID_p256_sntrup761, SSL_CURVE_P256_SNTRUP761, "p256_sntrup761", "p256_sntrup761"},
     {NID_sntrup857, SSL_CURVE_SNTRUP857, "sntrup857", "sntrup857"},
     {NID_p384_sntrup857, SSL_CURVE_P384_SNTRUP857, "p384_sntrup857", "p384_sntrup857"},
     {NID_sntrup1277, SSL_CURVE_SNTRUP1277, "sntrup1277", "sntrup1277"},
@@ -1020,9 +1020,9 @@ UniquePtr<SSLKeyShare> SSLKeyShare::Create(uint16_t group_id) {
           return UniquePtr<SSLKeyShare>(New<OQSKeyShare>(SSL_CURVE_NTRULPR761, OQS_KEM_alg_ntruprime_ntrulpr761));
       else
           return nullptr;
-    case SSL_CURVE_P384_NTRULPR761:
+    case SSL_CURVE_P256_NTRULPR761:
       if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_ntruprime_ntrulpr761))
-          return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P384_NTRULPR761, SSL_CURVE_SECP384R1, OQS_KEM_alg_ntruprime_ntrulpr761));
+          return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P256_NTRULPR761, SSL_CURVE_SECP256R1, OQS_KEM_alg_ntruprime_ntrulpr761));
       else
           return nullptr;
     case SSL_CURVE_NTRULPR857:
@@ -1060,9 +1060,9 @@ UniquePtr<SSLKeyShare> SSLKeyShare::Create(uint16_t group_id) {
           return UniquePtr<SSLKeyShare>(New<OQSKeyShare>(SSL_CURVE_SNTRUP761, OQS_KEM_alg_ntruprime_sntrup761));
       else
           return nullptr;
-    case SSL_CURVE_P384_SNTRUP761:
+    case SSL_CURVE_P256_SNTRUP761:
       if(OQS_KEM_alg_is_enabled(OQS_KEM_alg_ntruprime_sntrup761))
-          return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P384_SNTRUP761, SSL_CURVE_SECP384R1, OQS_KEM_alg_ntruprime_sntrup761));
+          return UniquePtr<SSLKeyShare>(New<ClassicalWithOQSKeyShare>(SSL_CURVE_P256_SNTRUP761, SSL_CURVE_SECP256R1, OQS_KEM_alg_ntruprime_sntrup761));
       else
           return nullptr;
     case SSL_CURVE_SNTRUP857:

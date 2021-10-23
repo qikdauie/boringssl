@@ -1425,7 +1425,7 @@ secg-scheme 14 3 : dhSinglePass-cofactorDH-sha512kdf-scheme
  : ntrulpr653
  : p256_ntrulpr653
  : ntrulpr761
- : p384_ntrulpr761
+ : p256_ntrulpr761
  : ntrulpr857
  : p384_ntrulpr857
  : ntrulpr1277
@@ -1433,7 +1433,7 @@ secg-scheme 14 3 : dhSinglePass-cofactorDH-sha512kdf-scheme
  : sntrup653
  : p256_sntrup653
  : sntrup761
- : p384_sntrup761
+ : p256_sntrup761
  : sntrup857
  : p384_sntrup857
  : sntrup1277
