@@ -4427,9 +4427,6 @@ extern "C" {
 #define SN_ntrulpr761 "ntrulpr761"
 #define NID_ntrulpr761 1126
 
-#define SN_p384_ntrulpr761 "p384_ntrulpr761"
-#define NID_p384_ntrulpr761 1127
-
 #define SN_ntrulpr857 "ntrulpr857"
 #define NID_ntrulpr857 1128
 
@@ -4444,9 +4441,6 @@ extern "C" {
 
 #define SN_sntrup761 "sntrup761"
 #define NID_sntrup761 1132
-
-#define SN_p384_sntrup761 "p384_sntrup761"
-#define NID_p384_sntrup761 1133
 
 #define SN_sntrup857 "sntrup857"
 #define NID_sntrup857 1134
@@ -4773,6 +4767,24 @@ extern "C" {
 
 #define SN_p384_bikel3 "p384_bikel3"
 #define NID_p384_bikel3 1214
+
+#define SN_ntrulpr1277 "ntrulpr1277"
+#define NID_ntrulpr1277 1215
+
+#define SN_p521_ntrulpr1277 "p521_ntrulpr1277"
+#define NID_p521_ntrulpr1277 1216
+
+#define SN_sntrup1277 "sntrup1277"
+#define NID_sntrup1277 1217
+
+#define SN_p521_sntrup1277 "p521_sntrup1277"
+#define NID_p521_sntrup1277 1218
+
+#define SN_p256_ntrulpr761 "p256_ntrulpr761"
+#define NID_p256_ntrulpr761 1219
+
+#define SN_p256_sntrup761 "p256_sntrup761"
+#define NID_p256_sntrup761 1220
 
 
 #if defined(__cplusplus)

@@ -2092,14 +2092,20 @@ bssl::UniquePtr<SSL> TestConfig::NewSSL(
         case SSL_CURVE_NTRULPR761:
           nids.push_back(NID_ntrulpr761);
           break;
-        case SSL_CURVE_P384_NTRULPR761:
-          nids.push_back(NID_p384_ntrulpr761);
+        case SSL_CURVE_P256_NTRULPR761:
+          nids.push_back(NID_p256_ntrulpr761);
           break;
         case SSL_CURVE_NTRULPR857:
           nids.push_back(NID_ntrulpr857);
           break;
         case SSL_CURVE_P384_NTRULPR857:
           nids.push_back(NID_p384_ntrulpr857);
+          break;
+        case SSL_CURVE_NTRULPR1277:
+          nids.push_back(NID_ntrulpr1277);
+          break;
+        case SSL_CURVE_P521_NTRULPR1277:
+          nids.push_back(NID_p521_ntrulpr1277);
           break;
         case SSL_CURVE_SNTRUP653:
           nids.push_back(NID_sntrup653);
@@ -2110,14 +2116,20 @@ bssl::UniquePtr<SSL> TestConfig::NewSSL(
         case SSL_CURVE_SNTRUP761:
           nids.push_back(NID_sntrup761);
           break;
-        case SSL_CURVE_P384_SNTRUP761:
-          nids.push_back(NID_p384_sntrup761);
+        case SSL_CURVE_P256_SNTRUP761:
+          nids.push_back(NID_p256_sntrup761);
           break;
         case SSL_CURVE_SNTRUP857:
           nids.push_back(NID_sntrup857);
           break;
         case SSL_CURVE_P384_SNTRUP857:
           nids.push_back(NID_p384_sntrup857);
+          break;
+        case SSL_CURVE_SNTRUP1277:
+          nids.push_back(NID_sntrup1277);
+          break;
+        case SSL_CURVE_P521_SNTRUP1277:
+          nids.push_back(NID_p521_sntrup1277);
           break;
 ///// OQS_TEMPLATE_FRAGMENT_ADD_NIDS_END
       }
@@ -2165,11 +2177,13 @@ bssl::UniquePtr<SSL> TestConfig::NewSSL(
         NID_hqc192, NID_p384_hqc192,
         NID_hqc256, NID_p521_hqc256,
         NID_ntrulpr653, NID_p256_ntrulpr653,
-        NID_ntrulpr761, NID_p384_ntrulpr761,
+        NID_ntrulpr761, NID_p256_ntrulpr761,
         NID_ntrulpr857, NID_p384_ntrulpr857,
+        NID_ntrulpr1277, NID_p521_ntrulpr1277,
         NID_sntrup653, NID_p256_sntrup653,
-        NID_sntrup761, NID_p384_sntrup761,
+        NID_sntrup761, NID_p256_sntrup761,
         NID_sntrup857, NID_p384_sntrup857,
+        NID_sntrup1277, NID_p521_sntrup1277,
 ///// OQS_TEMPLATE_FRAGMENT_LIST_PQ_CURVEIDS_END
     };
     if (!SSL_set1_curves(ssl.get(), kAllCurves,
