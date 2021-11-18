@@ -101,6 +101,12 @@ kems:
     mix_with: [{'name': 'p384', 'mix_nid':'0x2F17', 'nid':'SSL_CURVE_SECP384R1'}]
     oqs_meth: 'OQS_KEM_alg_ntru_hrss701'
   -
+    family: 'NTRU'
+    name: 'ntru_hrss1373'
+    nid: '0x0246'
+    mix_with: [{'name': 'p521', 'mix_nid':'0x2F46', 'nid':'SSL_CURVE_SECP521R1'}]
+    oqs_meth: 'OQS_KEM_alg_ntru_hrss1373'
+  -
     family: 'SABER'
     name: 'lightsaber'
     nid: '0x0218'

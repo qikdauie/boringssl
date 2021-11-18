@@ -316,6 +316,7 @@ OPENSSL_EXPORT EC_KEY *EVP_PKEY_get1_EC_KEY(const EVP_PKEY *pkey);
    (pkey_id == NID_ntru_hps4096821) || \
    (pkey_id == NID_ntru_hps40961229) || \
    (pkey_id == NID_ntru_hrss701) || \
+   (pkey_id == NID_ntru_hrss1373) || \
    (pkey_id == NID_lightsaber) || \
    (pkey_id == NID_saber) || \
    (pkey_id == NID_firesaber) || \

@@ -238,6 +238,8 @@ static bool is_post_quantum_group(uint16_t id) {
          id == SSL_CURVE_P521_NTRU_HPS40961229 ||
          id == SSL_CURVE_NTRU_HRSS701 ||
          id == SSL_CURVE_P384_NTRU_HRSS701 ||
+         id == SSL_CURVE_NTRU_HRSS1373 ||
+         id == SSL_CURVE_P521_NTRU_HRSS1373 ||
          id == SSL_CURVE_LIGHTSABER ||
          id == SSL_CURVE_P256_LIGHTSABER ||
          id == SSL_CURVE_SABER ||
@@ -436,6 +438,8 @@ static const uint16_t kAllSupportedGroups[] = {
     SSL_CURVE_NTRU_HPS40961229,
     SSL_CURVE_P384_NTRU_HRSS701,
     SSL_CURVE_NTRU_HRSS701,
+    SSL_CURVE_P521_NTRU_HRSS1373,
+    SSL_CURVE_NTRU_HRSS1373,
     SSL_CURVE_P256_LIGHTSABER,
     SSL_CURVE_LIGHTSABER,
     SSL_CURVE_P384_SABER,

@@ -535,6 +535,13 @@ static const CurveTest kCurveTests[] = {
     },
   },
   {
+    "ntru_hrss1373:p521_ntru_hrss1373",
+    {
+      SSL_CURVE_NTRU_HRSS1373,
+      SSL_CURVE_P521_NTRU_HRSS1373,
+    },
+  },
+  {
     "lightsaber:p256_lightsaber",
     {
       SSL_CURVE_LIGHTSABER,
@@ -8125,6 +8132,8 @@ static const TLSGroup kOQSGroups[] = {
     {NID_p521_ntru_hps40961229, SSL_CURVE_P521_NTRU_HPS40961229},
     {NID_ntru_hrss701, SSL_CURVE_NTRU_HRSS701},
     {NID_p384_ntru_hrss701, SSL_CURVE_P384_NTRU_HRSS701},
+    {NID_ntru_hrss1373, SSL_CURVE_NTRU_HRSS1373},
+    {NID_p521_ntru_hrss1373, SSL_CURVE_P521_NTRU_HRSS1373},
     {NID_lightsaber, SSL_CURVE_LIGHTSABER},
     {NID_p256_lightsaber, SSL_CURVE_P256_LIGHTSABER},
     {NID_saber, SSL_CURVE_SABER},

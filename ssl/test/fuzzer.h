@@ -448,6 +448,7 @@ class TLSFuzzer {
         NID_ntru_hps4096821, NID_p521_ntru_hps4096821,
         NID_ntru_hps40961229, NID_p521_ntru_hps40961229,
         NID_ntru_hrss701, NID_p384_ntru_hrss701,
+        NID_ntru_hrss1373, NID_p521_ntru_hrss1373,
         NID_lightsaber, NID_p256_lightsaber,
         NID_saber, NID_p384_saber,
         NID_firesaber, NID_p521_firesaber,

@@ -42,6 +42,8 @@ kexs = [
         'p521_ntru_hps40961229',
         'ntru_hrss701',
         'p384_ntru_hrss701',
+        'ntru_hrss1373',
+        'p521_ntru_hrss1373',
         'lightsaber',
         'p256_lightsaber',
         'saber',
