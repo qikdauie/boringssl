@@ -4786,6 +4786,18 @@ extern "C" {
 #define SN_p256_sntrup761 "p256_sntrup761"
 #define NID_p256_sntrup761 1220
 
+#define SN_ntru_hps40961229 "ntru_hps40961229"
+#define NID_ntru_hps40961229 1221
+
+#define SN_p521_ntru_hps40961229 "p521_ntru_hps40961229"
+#define NID_p521_ntru_hps40961229 1222
+
+#define SN_ntru_hrss1373 "ntru_hrss1373"
+#define NID_ntru_hrss1373 1223
+
+#define SN_p521_ntru_hrss1373 "p521_ntru_hrss1373"
+#define NID_p521_ntru_hrss1373 1224
+
 
 #if defined(__cplusplus)
 } /* extern C */

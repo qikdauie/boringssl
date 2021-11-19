@@ -90,10 +90,22 @@ kems:
     oqs_meth: 'OQS_KEM_alg_ntru_hps4096821'
   -
     family: 'NTRU'
+    name: 'ntru_hps40961229'
+    nid: '0x0245'
+    mix_with: [{'name': 'p521', 'mix_nid':'0x2F45', 'nid':'SSL_CURVE_SECP521R1'}]
+    oqs_meth: 'OQS_KEM_alg_ntru_hps40961229'
+  -
+    family: 'NTRU'
     name: 'ntru_hrss701'
     nid: '0x0217'
     mix_with: [{'name': 'p384', 'mix_nid':'0x2F17', 'nid':'SSL_CURVE_SECP384R1'}]
     oqs_meth: 'OQS_KEM_alg_ntru_hrss701'
+  -
+    family: 'NTRU'
+    name: 'ntru_hrss1373'
+    nid: '0x0246'
+    mix_with: [{'name': 'p521', 'mix_nid':'0x2F46', 'nid':'SSL_CURVE_SECP521R1'}]
+    oqs_meth: 'OQS_KEM_alg_ntru_hrss1373'
   -
     family: 'SABER'
     name: 'lightsaber'
