@@ -1,4 +1,4 @@
-OQS-BoringSSL snapshot 2021-08
+OQS-BoringSSL snapshot 2021-12-rc1
 ==================================
 
 About
@@ -13,18 +13,36 @@ The **Open Quantum Safe (OQS) project** has the goal of developing and prototypi
 Release notes
 =============
 
-This is the 2021-08 snapshot release of OQS-BoringSSL, released on August 11, 2021. This release is intended to be used with liboqs version 0.7.0.
+This is release candidate 1 for the 2021-12 snapshot release of OQS-BoringSSL, released on December 16, 2021. This release is intended to be used with liboqs version 0.7.1.
 
 What's New
 ----------
 
-This is the fourth snapshot release of OQS-BoringSSL.  It is based on BoringSSL commit [78b3337a10a7f7b3495b6cb8140a74e265290898](https://github.com/google/boringssl/commit/78b3337).
+This is the fifth snapshot release of OQS-BoringSSL.  It is based on BoringSSL commit [519c2986c73c23461b130ad19b93fd7d081353d5](https://github.com/google/boringssl/commit/519c2986c73c23461b130ad19b93fd7d081353d5).
 
-- Updates algorithms to those used in liboqs 0.7.0, as described in the [liboqs release notes](https://github.com/open-quantum-safe/liboqs/blob/main/RELEASE.md).
+- Update to BoringSSL commit 519c2986c73c23461b130ad19b93fd7d081353d5.
+- Add NTRU and NTRU Prime Level 5 KEMs.
 
 Previous release notes
 ----------------------
 
+- [OQS-BoringSSL snapshot 2021-08](https://github.com/open-quantum-safe/boringssl/releases/tag/OQS-BoringSSL-snapshot-2021-08) aligned with liboqs 0.7.0 (August 11, 2021)
 - [OQS-BoringSSL snapshot 2021-03](https://github.com/open-quantum-safe/boringssl/releases/tag/OQS-BoringSSL-snapshot-2021-03) aligned with liboqs 0.5.0 (March 26, 2021)
 - [OQS-BoringSSL snapshot 2020-08](https://github.com/open-quantum-safe/boringssl/releases/tag/OQS-BoringSSL-snapshot-2020-08) aligned with liboqs 0.4.0 (August 11, 2020)
 - [OQS-BoringSSL snapshot 2020-07](https://github.com/open-quantum-safe/boringssl/releases/tag/OQS-BoringSSL-snapshot-2020-07) aligned with liboqs 0.3.0 (July 10, 2020)
+
+---
+
+Detailed changelog
+------------------
+
+* Update README.md by @baentsch in https://github.com/open-quantum-safe/boringssl/pull/69
+* Upgrade to upstream 519c2986c73c23461b130ad19b93fd7d081353d5  (Chromium 92 0 4515 107) by @baentsch in https://github.com/open-quantum-safe/boringssl/pull/68
+* further README update [skip ci] by @baentsch in https://github.com/open-quantum-safe/boringssl/pull/70
+* Search for liboqs in appropriate location on Windows by @dstebila in https://github.com/open-quantum-safe/boringssl/pull/76
+* added s/ntrup1277 by @baentsch in https://github.com/open-quantum-safe/boringssl/pull/75
+* s/ntrup761 hybrid code point bump by @baentsch in https://github.com/open-quantum-safe/boringssl/pull/78
+* adding ntru_hps40961229 by @baentsch in https://github.com/open-quantum-safe/boringssl/pull/79
+
+
+**Full Changelog**: https://github.com/open-quantum-safe/boringssl/compare/OQS-BoringSSL-snapshot-2021-08...OQS-BoringSSL-snapshot-2021-12-rc1
