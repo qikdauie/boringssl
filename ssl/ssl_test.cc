@@ -5404,12 +5404,6 @@ TEST(SSLTest, SignatureAlgorithmProperties) {
             SSL_get_signature_algorithm_key_type(SSL_SIGN_PICNIC3L3));
   EXPECT_EQ(EVP_PKEY_PICNIC3L5,
             SSL_get_signature_algorithm_key_type(SSL_SIGN_PICNIC3L5));
-  EXPECT_EQ(EVP_PKEY_RAINBOWICLASSIC,
-            SSL_get_signature_algorithm_key_type(SSL_SIGN_RAINBOWICLASSIC));
-  EXPECT_EQ(EVP_PKEY_RAINBOWICIRCUMZENITHAL,
-            SSL_get_signature_algorithm_key_type(SSL_SIGN_RAINBOWICIRCUMZENITHAL));
-  EXPECT_EQ(EVP_PKEY_RAINBOWICOMPRESSED,
-            SSL_get_signature_algorithm_key_type(SSL_SIGN_RAINBOWICOMPRESSED));
   EXPECT_EQ(EVP_PKEY_RAINBOWIIICLASSIC,
             SSL_get_signature_algorithm_key_type(SSL_SIGN_RAINBOWIIICLASSIC));
   EXPECT_EQ(EVP_PKEY_RAINBOWIIICIRCUMZENITHAL,
@@ -5790,9 +5784,6 @@ TEST(SSLTest, SigAlgs) {
       {{NID_sha256, EVP_PKEY_PICNIC3L1}, true, {SSL_SIGN_PICNIC3L1}},
       {{NID_sha384, EVP_PKEY_PICNIC3L3}, true, {SSL_SIGN_PICNIC3L3}},
       {{NID_sha512, EVP_PKEY_PICNIC3L5}, true, {SSL_SIGN_PICNIC3L5}},
-      {{NID_sha256, EVP_PKEY_RAINBOWICLASSIC}, true, {SSL_SIGN_RAINBOWICLASSIC}},
-      {{NID_sha256, EVP_PKEY_RAINBOWICIRCUMZENITHAL}, true, {SSL_SIGN_RAINBOWICIRCUMZENITHAL}},
-      {{NID_sha256, EVP_PKEY_RAINBOWICOMPRESSED}, true, {SSL_SIGN_RAINBOWICOMPRESSED}},
       {{NID_sha384, EVP_PKEY_RAINBOWIIICLASSIC}, true, {SSL_SIGN_RAINBOWIIICLASSIC}},
       {{NID_sha384, EVP_PKEY_RAINBOWIIICIRCUMZENITHAL}, true, {SSL_SIGN_RAINBOWIIICIRCUMZENITHAL}},
       {{NID_sha384, EVP_PKEY_RAINBOWIIICOMPRESSED}, true, {SSL_SIGN_RAINBOWIIICOMPRESSED}},
@@ -5906,9 +5897,6 @@ TEST(SSLTest, SigAlgsList) {
       {"picnic3l1", true, {SSL_SIGN_PICNIC3L1}},
       {"picnic3l3", true, {SSL_SIGN_PICNIC3L3}},
       {"picnic3l5", true, {SSL_SIGN_PICNIC3L5}},
-      {"rainbowIclassic", true, {SSL_SIGN_RAINBOWICLASSIC}},
-      {"rainbowIcircumzenithal", true, {SSL_SIGN_RAINBOWICIRCUMZENITHAL}},
-      {"rainbowIcompressed", true, {SSL_SIGN_RAINBOWICOMPRESSED}},
       {"rainbowIIIclassic", true, {SSL_SIGN_RAINBOWIIICLASSIC}},
       {"rainbowIIIcircumzenithal", true, {SSL_SIGN_RAINBOWIIICIRCUMZENITHAL}},
       {"rainbowIIIcompressed", true, {SSL_SIGN_RAINBOWIIICOMPRESSED}},
@@ -8322,9 +8310,6 @@ INSTANTIATE_TEST_SUITE_P(WithSignatureNIDs, OQSHandshakeTest,
                             NID_picnic3l1,
                             NID_picnic3l3,
                             NID_picnic3l5,
-                            NID_rainbowIclassic,
-                            NID_rainbowIcircumzenithal,
-                            NID_rainbowIcompressed,
                             NID_rainbowIIIclassic,
                             NID_rainbowIIIcircumzenithal,
                             NID_rainbowIIIcompressed,
