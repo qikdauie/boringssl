@@ -194,9 +194,6 @@ OPENSSL_EXPORT EC_KEY *EVP_PKEY_get1_EC_KEY(const EVP_PKEY *pkey);
 #define EVP_PKEY_PICNIC3L1 NID_picnic3l1
 #define EVP_PKEY_PICNIC3L3 NID_picnic3l3
 #define EVP_PKEY_PICNIC3L5 NID_picnic3l5
-#define EVP_PKEY_RAINBOWICLASSIC NID_rainbowIclassic
-#define EVP_PKEY_RAINBOWICIRCUMZENITHAL NID_rainbowIcircumzenithal
-#define EVP_PKEY_RAINBOWICOMPRESSED NID_rainbowIcompressed
 #define EVP_PKEY_RAINBOWIIICLASSIC NID_rainbowIIIclassic
 #define EVP_PKEY_RAINBOWIIICIRCUMZENITHAL NID_rainbowIIIcircumzenithal
 #define EVP_PKEY_RAINBOWIIICOMPRESSED NID_rainbowIIIcompressed
@@ -255,9 +252,6 @@ OPENSSL_EXPORT EC_KEY *EVP_PKEY_get1_EC_KEY(const EVP_PKEY *pkey);
    (pkey_id == NID_picnic3l1) || \
    (pkey_id == NID_picnic3l3) || \
    (pkey_id == NID_picnic3l5) || \
-   (pkey_id == NID_rainbowIclassic) || \
-   (pkey_id == NID_rainbowIcircumzenithal) || \
-   (pkey_id == NID_rainbowIcompressed) || \
    (pkey_id == NID_rainbowIIIclassic) || \
    (pkey_id == NID_rainbowIIIcircumzenithal) || \
    (pkey_id == NID_rainbowIIIcompressed) || \

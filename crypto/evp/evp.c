@@ -243,12 +243,6 @@ static const EVP_PKEY_ASN1_METHOD *evp_pkey_asn1_find(int nid) {
       return &picnic3l3_asn1_meth;
     case EVP_PKEY_PICNIC3L5:
       return &picnic3l5_asn1_meth;
-    case EVP_PKEY_RAINBOWICLASSIC:
-      return &rainbowIclassic_asn1_meth;
-    case EVP_PKEY_RAINBOWICIRCUMZENITHAL:
-      return &rainbowIcircumzenithal_asn1_meth;
-    case EVP_PKEY_RAINBOWICOMPRESSED:
-      return &rainbowIcompressed_asn1_meth;
     case EVP_PKEY_RAINBOWIIICLASSIC:
       return &rainbowIIIclassic_asn1_meth;
     case EVP_PKEY_RAINBOWIIICIRCUMZENITHAL:
