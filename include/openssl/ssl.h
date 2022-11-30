@@ -4252,10 +4252,7 @@ OPENSSL_EXPORT int SSL_total_renegotiations(const SSL *ssl);
 
 // SSL_MAX_CERT_LIST_DEFAULT is the default maximum length, in bytes, of a peer
 // certificate chain.
-// OQS note: To accomodate signature schemes such as Rainbow,
-// we have changed this from (1024 * 100) to 2^(24) - 1, which
-// is the maximum permissible value established by the TLS 1.3 spec.
-#define SSL_MAX_CERT_LIST_DEFAULT 16777215
+#define SSL_MAX_CERT_LIST_DEFAULT (1024 * 100)
 
 // SSL_CTX_get_max_cert_list returns the maximum length, in bytes, of a peer
 // certificate chain accepted by |ctx|.
