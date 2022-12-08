@@ -4251,11 +4251,15 @@ extern "C" {
 #define NID_sha512_256 962
 #define OBJ_sha512_256 2L, 16L, 840L, 1L, 101L, 3L, 4L, 2L, 6L
 
+#define SN_hkdf "HKDF"
+#define LN_hkdf "hkdf"
+#define NID_hkdf 963
+
 #define SN_frodo640aes "frodo640aes"
-#define NID_frodo640aes 963
+#define NID_frodo640aes 964
 
 #define SN_p256_frodo640aes "p256_frodo640aes"
-#define NID_p256_frodo640aes 964
+#define NID_p256_frodo640aes 965
 
 #define SN_dilithium2 "dilithium2"
 #define LN_dilithium2 "dilithium2"
