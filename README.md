@@ -37,6 +37,8 @@ This fork is built on top of [commit 5511fa8](https://github.com/open-quantum-sa
 
 liboqs and this integration are provided "as is", without warranty of any kind.  See the [LICENSE](https://github.com/open-quantum-safe/liboqs/blob/main/LICENSE.txt) for the full disclaimer.
 
+**N.B.: WE DO NOT REGULARLY TEST INTEROPERABILITY WITH [OQS-OPENSSL](https://github.com/open-quantum-safe/openssl), INSTEAD ONLY DOING SO AS AND WHEN THE NEED MIGHT ARISE. AS A CONSEQUENCE, THIS PROJECT, AS WELL AS THE CHROMIUM DEMO THAT IS BUILT ON TOP OF IT, MAY NOT INTEROPERATE WITH OTHER COMPONENTS IN THE OQS INFRASTRUCTURE SUCH AS THE [OQS PROVIDER](https://github.com/open-quantum-safe/oqs-provider) AND THE [OQS TEST SERVER](http://test.openquantumsafe.org/).**
+
 ### Limitations and security
 
 As research advances, the supported algorithms may see rapid changes in their security, and may even prove insecure against both classical and quantum computers.
@@ -64,7 +66,7 @@ The following quantum-safe algorithms from liboqs are supported (assuming they h
 
 <!--- OQS_TEMPLATE_FRAGMENT_LIST_KEXS_START -->
 - **BIKE**: `bikel1`, `bikel3`
-- **CRYSTALS-Kyber**: `kyber512`, `kyber768`, `kyber1024`, `kyber90s512`, `kyber90s768`, `kyber90s1024`
+- **CRYSTALS-Kyber**: `kyber512`, `kyber768`, `kyber1024`
 - **FrodoKEM**: `frodo640shake`, `frodo976aes`, `frodo976shake`, `frodo1344aes`, `frodo1344shake`
 - **HQC**: `hqc128`, `hqc192`, `hqc256`†
 <!--- OQS_TEMPLATE_FRAGMENT_LIST_KEXS_END -->
@@ -84,11 +86,10 @@ Note that algorithms marked with a dagger (†) have large stack usage and may c
 The following quantum-safe digital signature algorithms from liboqs are supported (assuming they have been enabled in liboqs):
 
 <!--- OQS_TEMPLATE_FRAGMENT_LIST_SIGS_START -->
-- **CRYSTALS-DILITHIUM**: `dilithium3`, `dilithium5`, `dilithium2_aes`, `dilithium3_aes`, `dilithium5_aes`
+- **CRYSTALS-DILITHIUM**: `dilithium3`, `dilithium5`
 - **Falcon**: `falcon512`, `falcon1024`
-- **SPHINCS-Haraka**: `sphincsharaka128frobust`, `sphincsharaka128fsimple`, `sphincsharaka128srobust`, `sphincsharaka128ssimple`, `sphincsharaka192frobust`, `sphincsharaka192fsimple`, `sphincsharaka192srobust`, `sphincsharaka192ssimple`, `sphincsharaka256frobust`, `sphincsharaka256fsimple`, `sphincsharaka256srobust`, `sphincsharaka256ssimple`
-- **SPHINCS-SHA256**: `sphincssha256128frobust`, `sphincssha256128fsimple`, `sphincssha256128srobust`, `sphincssha256128ssimple`, `sphincssha256192frobust`, `sphincssha256192fsimple`, `sphincssha256192srobust`, `sphincssha256192ssimple`, `sphincssha256256frobust`, `sphincssha256256fsimple`, `sphincssha256256srobust`, `sphincssha256256ssimple`
-- **SPHINCS-SHAKE256**: `sphincsshake256128frobust`, `sphincsshake256128fsimple`, `sphincsshake256128srobust`, `sphincsshake256128ssimple`, `sphincsshake256192frobust`, `sphincsshake256192fsimple`, `sphincsshake256192srobust`, `sphincsshake256192ssimple`, `sphincsshake256256frobust`, `sphincsshake256256fsimple`, `sphincsshake256256srobust`, `sphincsshake256256ssimple`
+- **SPHINCS-SHA2**: `sphincssha2128fsimple`, `sphincssha2128ssimple`, `sphincssha2192fsimple`, `sphincssha2192ssimple`, `sphincssha2256fsimple`, `sphincssha2256ssimple`
+- **SPHINCS-SHAKE**: `sphincsshake128fsimple`, `sphincsshake128ssimple`, `sphincsshake192fsimple`, `sphincsshake192ssimple`, `sphincsshake256fsimple`, `sphincsshake256ssimple`
 <!--- OQS_TEMPLATE_FRAGMENT_LIST_SIGS_END -->
 
 No hybrid signature algorithms are currently implemented. If those are needed for a project please use [OQS-OpenSSL](https://github.com/open-quantum-safe/openssl) which supports them out of the box, or implement them and create a pull request, or [create an issue](https://github.com/open-quantum-safe/boringssl/issues).
