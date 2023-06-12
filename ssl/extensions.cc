@@ -132,6 +132,7 @@
 #include "../crypto/internal.h"
 #include "internal.h"
 
+
 BSSL_NAMESPACE_BEGIN
 
 static bool ssl_check_clienthello_tlsext(SSL_HANDSHAKE *hs);
@@ -204,37 +205,70 @@ static bool tls1_check_duplicate_extensions(const CBS *cbs) {
 }
 
 static bool is_post_quantum_group(uint16_t id) {
-  return id == SSL_CURVE_CECPQ2 ||
+  switch (id) {
+    case SSL_GROUP_X25519_KYBER768_DRAFT00:
+      return true;
 ///// OQS_TEMPLATE_FRAGMENT_ADD_PQ_GROUPS_START
-         id == SSL_CURVE_FRODO640AES ||
-         id == SSL_CURVE_P256_FRODO640AES ||
-         id == SSL_CURVE_FRODO640SHAKE ||
-         id == SSL_CURVE_P256_FRODO640SHAKE ||
-         id == SSL_CURVE_FRODO976AES ||
-         id == SSL_CURVE_P384_FRODO976AES ||
-         id == SSL_CURVE_FRODO976SHAKE ||
-         id == SSL_CURVE_P384_FRODO976SHAKE ||
-         id == SSL_CURVE_FRODO1344AES ||
-         id == SSL_CURVE_P521_FRODO1344AES ||
-         id == SSL_CURVE_FRODO1344SHAKE ||
-         id == SSL_CURVE_P521_FRODO1344SHAKE ||
-         id == SSL_CURVE_BIKEL1 ||
-         id == SSL_CURVE_P256_BIKEL1 ||
-         id == SSL_CURVE_BIKEL3 ||
-         id == SSL_CURVE_P384_BIKEL3 ||
-         id == SSL_CURVE_KYBER512 ||
-         id == SSL_CURVE_P256_KYBER512 ||
-         id == SSL_CURVE_KYBER768 ||
-         id == SSL_CURVE_P384_KYBER768 ||
-         id == SSL_CURVE_KYBER1024 ||
-         id == SSL_CURVE_P521_KYBER1024 ||
-         id == SSL_CURVE_HQC128 ||
-         id == SSL_CURVE_P256_HQC128 ||
-         id == SSL_CURVE_HQC192 ||
-         id == SSL_CURVE_P384_HQC192 ||
-         id == SSL_CURVE_HQC256 ||
-         id == SSL_CURVE_P521_HQC256;
+    case SSL_GROUP_FRODO640AES:
+      return true;
+    case SSL_GROUP_P256_FRODO640AES:
+      return true;
+    case SSL_GROUP_FRODO640SHAKE:
+      return true;
+    case SSL_GROUP_P256_FRODO640SHAKE:
+      return true;
+    case SSL_GROUP_FRODO976AES:
+      return true;
+    case SSL_GROUP_P384_FRODO976AES:
+      return true;
+    case SSL_GROUP_FRODO976SHAKE:
+      return true;
+    case SSL_GROUP_P384_FRODO976SHAKE:
+      return true;
+    case SSL_GROUP_FRODO1344AES:
+      return true;
+    case SSL_GROUP_P521_FRODO1344AES:
+      return true;
+    case SSL_GROUP_FRODO1344SHAKE:
+      return true;
+    case SSL_GROUP_P521_FRODO1344SHAKE:
+      return true;
+    case SSL_GROUP_BIKEL1:
+      return true;
+    case SSL_GROUP_P256_BIKEL1:
+      return true;
+    case SSL_GROUP_BIKEL3:
+      return true;
+    case SSL_GROUP_P384_BIKEL3:
+      return true;
+    case SSL_GROUP_KYBER512:
+      return true;
+    case SSL_GROUP_P256_KYBER512:
+      return true;
+    case SSL_GROUP_KYBER768:
+      return true;
+    case SSL_GROUP_P384_KYBER768:
+      return true;
+    case SSL_GROUP_KYBER1024:
+      return true;
+    case SSL_GROUP_P521_KYBER1024:
+      return true;
+    case SSL_GROUP_HQC128:
+      return true;
+    case SSL_GROUP_P256_HQC128:
+      return true;
+    case SSL_GROUP_HQC192:
+      return true;
+    case SSL_GROUP_P384_HQC192:
+      return true;
+    case SSL_GROUP_HQC256:
+      return true;
+    case SSL_GROUP_P521_HQC256:
+      return true;
 ///// OQS_TEMPLATE_FRAGMENT_ADD_PQ_GROUPS_END
+    default:
+      return false;
+  }
 }
 
 bool ssl_client_hello_init(const SSL *ssl, SSL_CLIENT_HELLO *out,
@@ -331,12 +365,12 @@ bool ssl_client_hello_get_extension(const SSL_CLIENT_HELLO *client_hello,
 }
 
 static const uint16_t kDefaultGroups[] = {
-    SSL_CURVE_X25519,
-    SSL_CURVE_SECP256R1,
-    SSL_CURVE_SECP384R1,
+    SSL_GROUP_X25519,
+    SSL_GROUP_SECP256R1,
+    SSL_GROUP_SECP384R1,
 ///// OQS_TEMPLATE_FRAGMENT_ADD_DEFAULT_KEMS_START
-    SSL_CURVE_P256_FRODO640AES,
-    SSL_CURVE_P256_BIKEL1,
+    SSL_GROUP_P256_FRODO640AES,
+    SSL_GROUP_P256_BIKEL1,
 ///// OQS_TEMPLATE_FRAGMENT_ADD_DEFAULT_KEMS_END
 };
 
@@ -347,38 +381,38 @@ static const uint16_t kDefaultGroups[] = {
 // list all supported algorithms here. Algorithms that appear
 // only in this list can be used through SSL_CTX_set1_curves_list().
 static const uint16_t kAllSupportedGroups[] = {
-    SSL_CURVE_X25519,
-    SSL_CURVE_SECP256R1,
-    SSL_CURVE_SECP384R1,
+    SSL_GROUP_X25519,
+    SSL_GROUP_SECP256R1,
+    SSL_GROUP_SECP384R1,
 ///// OQS_TEMPLATE_FRAGMENT_ADD_ALL_KEMS_START
-    SSL_CURVE_P256_FRODO640AES,
-    SSL_CURVE_FRODO640AES,
-    SSL_CURVE_P256_FRODO640SHAKE,
-    SSL_CURVE_FRODO640SHAKE,
-    SSL_CURVE_P384_FRODO976AES,
-    SSL_CURVE_FRODO976AES,
-    SSL_CURVE_P384_FRODO976SHAKE,
-    SSL_CURVE_FRODO976SHAKE,
-    SSL_CURVE_P521_FRODO1344AES,
-    SSL_CURVE_FRODO1344AES,
-    SSL_CURVE_P521_FRODO1344SHAKE,
-    SSL_CURVE_FRODO1344SHAKE,
-    SSL_CURVE_P256_BIKEL1,
-    SSL_CURVE_BIKEL1,
-    SSL_CURVE_P384_BIKEL3,
-    SSL_CURVE_BIKEL3,
-    SSL_CURVE_P256_KYBER512,
-    SSL_CURVE_KYBER512,
-    SSL_CURVE_P384_KYBER768,
-    SSL_CURVE_KYBER768,
-    SSL_CURVE_P521_KYBER1024,
-    SSL_CURVE_KYBER1024,
-    SSL_CURVE_P256_HQC128,
-    SSL_CURVE_HQC128,
-    SSL_CURVE_P384_HQC192,
-    SSL_CURVE_HQC192,
-    SSL_CURVE_P521_HQC256,
-    SSL_CURVE_HQC256,
+    SSL_GROUP_P256_FRODO640AES,
+    SSL_GROUP_FRODO640AES,
+    SSL_GROUP_P256_FRODO640SHAKE,
+    SSL_GROUP_FRODO640SHAKE,
+    SSL_GROUP_P384_FRODO976AES,
+    SSL_GROUP_FRODO976AES,
+    SSL_GROUP_P384_FRODO976SHAKE,
+    SSL_GROUP_FRODO976SHAKE,
+    SSL_GROUP_P521_FRODO1344AES,
+    SSL_GROUP_FRODO1344AES,
+    SSL_GROUP_P521_FRODO1344SHAKE,
+    SSL_GROUP_FRODO1344SHAKE,
+    SSL_GROUP_P256_BIKEL1,
+    SSL_GROUP_BIKEL1,
+    SSL_GROUP_P384_BIKEL3,
+    SSL_GROUP_BIKEL3,
+    SSL_GROUP_P256_KYBER512,
+    SSL_GROUP_KYBER512,
+    SSL_GROUP_P384_KYBER768,
+    SSL_GROUP_KYBER768,
+    SSL_GROUP_P521_KYBER1024,
+    SSL_GROUP_KYBER1024,
+    SSL_GROUP_P256_HQC128,
+    SSL_GROUP_HQC128,
+    SSL_GROUP_P384_HQC192,
+    SSL_GROUP_HQC192,
+    SSL_GROUP_P521_HQC256,
+    SSL_GROUP_HQC256,
 ///// OQS_TEMPLATE_FRAGMENT_ADD_ALL_KEMS_END
 };
 
@@ -422,8 +456,8 @@ bool tls1_get_shared_group(SSL_HANDSHAKE *hs, uint16_t *out_group_id) {
   for (uint16_t pref_group : pref) {
     for (uint16_t supp_group : supp) {
       if (pref_group == supp_group &&
-          // CECPQ2(b) doesn't fit in the u8-length-prefixed ECPoint field in
-          // TLS 1.2 and below.
+          // Post-quantum key agreements don't fit in the u8-length-prefixed
+          // ECPoint field in TLS 1.2 and below.
           (ssl_protocol_version(ssl) >= TLS1_3_VERSION ||
            !is_post_quantum_group(pref_group))) {
         *out_group_id = pref_group;
@@ -435,61 +469,10 @@ bool tls1_get_shared_group(SSL_HANDSHAKE *hs, uint16_t *out_group_id) {
   return false;
 }
 
-bool tls1_set_curves(Array<uint16_t> *out_group_ids, Span<const int> curves) {
-  Array<uint16_t> group_ids;
-  if (!group_ids.Init(curves.size())) {
-    return false;
-  }
-
-  for (size_t i = 0; i < curves.size(); i++) {
-    if (!ssl_nid_to_group_id(&group_ids[i], curves[i])) {
-      return false;
-    }
-  }
-
-  *out_group_ids = std::move(group_ids);
-  return true;
-}
-
-bool tls1_set_curves_list(Array<uint16_t> *out_group_ids, const char *curves) {
-  // Count the number of curves in the list.
-  size_t count = 0;
-  const char *ptr = curves, *col;
-  do {
-    col = strchr(ptr, ':');
-    count++;
-    if (col) {
-      ptr = col + 1;
-    }
-  } while (col);
-
-  Array<uint16_t> group_ids;
-  if (!group_ids.Init(count)) {
-    return false;
-  }
-
-  size_t i = 0;
-  ptr = curves;
-  do {
-    col = strchr(ptr, ':');
-    if (!ssl_name_to_group_id(&group_ids[i++], ptr,
-                              col ? (size_t)(col - ptr) : strlen(ptr))) {
-      return false;
-    }
-    if (col) {
-      ptr = col + 1;
-    }
-  } while (col);
-
-  assert(i == count);
-  *out_group_ids = std::move(group_ids);
-  return true;
-}
-
 bool tls1_check_group_id(const SSL_HANDSHAKE *hs, uint16_t group_id) {
   if (is_post_quantum_group(group_id) &&
       ssl_protocol_version(hs->ssl) < TLS1_3_VERSION) {
-    // CECPQ2(b) requires TLS 1.3.
+    // Post-quantum "groups" require TLS 1.3.
     return false;
   }
 
@@ -2422,11 +2405,13 @@ bool ssl_setup_key_shares(SSL_HANDSHAKE *hs, uint16_t override_group_id) {
 
     group_id = groups[0];
 
-    if (is_post_quantum_group(group_id) && groups.size() >= 2) {
-      // CECPQ2(b) is not sent as the only initial key share. We'll include the
-      // 2nd preference group too to avoid round-trips.
-      second_group_id = groups[1];
-      assert(second_group_id != group_id);
+    // We'll try to include one post-quantum and one classical initial key
+    // share.
+    for (size_t i = 1; i < groups.size() && second_group_id == 0; i++) {
+      if (is_post_quantum_group(group_id) != is_post_quantum_group(groups[i])) {
+        second_group_id = groups[i];
+        assert(second_group_id != group_id);
+      }
     }
   }
 
@@ -2435,7 +2420,7 @@ bool ssl_setup_key_shares(SSL_HANDSHAKE *hs, uint16_t override_group_id) {
   if (!hs->key_shares[0] ||  //
       !CBB_add_u16(cbb.get(), group_id) ||
       !CBB_add_u16_length_prefixed(cbb.get(), &key_exchange) ||
-      !hs->key_shares[0]->Offer(&key_exchange)) {
+      !hs->key_shares[0]->Generate(&key_exchange)) {
     return false;
   }
 
@@ -2444,7 +2429,7 @@ bool ssl_setup_key_shares(SSL_HANDSHAKE *hs, uint16_t override_group_id) {
     if (!hs->key_shares[1] ||  //
         !CBB_add_u16(cbb.get(), second_group_id) ||
         !CBB_add_u16_length_prefixed(cbb.get(), &key_exchange) ||
-        !hs->key_shares[1]->Offer(&key_exchange)) {
+        !hs->key_shares[1]->Generate(&key_exchange)) {
       return false;
     }
   }
@@ -2476,10 +2461,10 @@ static bool ext_key_share_add_clienthello(const SSL_HANDSHAKE *hs, CBB *out,
 bool ssl_ext_key_share_parse_serverhello(SSL_HANDSHAKE *hs,
                                          Array<uint8_t> *out_secret,
                                          uint8_t *out_alert, CBS *contents) {
-  CBS peer_key;
+  CBS ciphertext;
   uint16_t group_id;
   if (!CBS_get_u16(contents, &group_id) ||
-      !CBS_get_u16_length_prefixed(contents, &peer_key) ||
+      !CBS_get_u16_length_prefixed(contents, &ciphertext) ||
       CBS_len(contents) != 0) {
     OPENSSL_PUT_ERROR(SSL, SSL_R_DECODE_ERROR);
     *out_alert = SSL_AD_DECODE_ERROR;
@@ -2496,7 +2481,7 @@ bool ssl_ext_key_share_parse_serverhello(SSL_HANDSHAKE *hs,
     key_share = hs->key_shares[1].get();
   }
 
-  if (!key_share->Finish(out_secret, out_alert, peer_key)) {
+  if (!key_share->Decap(out_secret, out_alert, ciphertext)) {
     *out_alert = SSL_AD_INTERNAL_ERROR;
     return false;
   }
@@ -2561,13 +2546,13 @@ bool ssl_ext_key_share_parse_clienthello(SSL_HANDSHAKE *hs, bool *out_found,
 }
 
 bool ssl_ext_key_share_add_serverhello(SSL_HANDSHAKE *hs, CBB *out) {
-  CBB kse_bytes, public_key;
+  CBB entry, ciphertext;
   if (!CBB_add_u16(out, TLSEXT_TYPE_key_share) ||
-      !CBB_add_u16_length_prefixed(out, &kse_bytes) ||
-      !CBB_add_u16(&kse_bytes, hs->new_session->group_id) ||
-      !CBB_add_u16_length_prefixed(&kse_bytes, &public_key) ||
-      !CBB_add_bytes(&public_key, hs->ecdh_public_key.data(),
-                     hs->ecdh_public_key.size()) ||
+      !CBB_add_u16_length_prefixed(out, &entry) ||
+      !CBB_add_u16(&entry, hs->new_session->group_id) ||
+      !CBB_add_u16_length_prefixed(&entry, &ciphertext) ||
+      !CBB_add_bytes(&ciphertext, hs->key_share_ciphertext.data(),
+                     hs->key_share_ciphertext.size()) ||
       !CBB_flush(out)) {
     return false;
   }
@@ -4057,7 +4042,6 @@ static enum ssl_ticket_aead_result_t ssl_decrypt_ticket_with_method(
     Span<const uint8_t> ticket) {
   Array<uint8_t> plaintext;
   if (!plaintext.Init(ticket.size())) {
-    OPENSSL_PUT_ERROR(SSL, ERR_R_MALLOC_FAILURE);
     return ssl_ticket_aead_error;
   }
 
@@ -4224,10 +4208,7 @@ bool tls1_choose_signature_algorithm(SSL_HANDSHAKE *hs, uint16_t *out) {
   Span<const uint16_t> peer_sigalgs = tls1_get_peer_verify_algorithms(hs);
 
   for (uint16_t sigalg : sigalgs) {
-    // SSL_SIGN_RSA_PKCS1_MD5_SHA1 is an internal value and should never be
-    // negotiated.
-    if (sigalg == SSL_SIGN_RSA_PKCS1_MD5_SHA1 ||
-        !ssl_private_key_supports_signature_algorithm(hs, sigalg)) {
+    if (!ssl_private_key_supports_signature_algorithm(hs, sigalg)) {
       continue;
     }
 
