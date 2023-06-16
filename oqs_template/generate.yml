@@ -41,15 +41,15 @@ kems:
   -
     family: 'BIKE'
     name: 'bikel1'
-    nid: '0x0238'
-    mix_with: [{'name': 'p256', 'mix_nid':'0x2F38', 'nid':'SSL_CURVE_SECP256R1'}]
+    nid: '0x0241'
+    mix_with: [{'name': 'p256', 'mix_nid':'0x2F41', 'nid':'SSL_CURVE_SECP256R1'}]
     use_as_default_with: 'p256'
     oqs_meth: 'OQS_KEM_alg_bike_l1'
   -
     family: 'BIKE'
     name: 'bikel3'
-    nid: '0x023B'
-    mix_with: [{'name': 'p384', 'mix_nid':'0x2F3B', 'nid':'SSL_CURVE_SECP384R1'}]
+    nid: '0x0242'
+    mix_with: [{'name': 'p384', 'mix_nid':'0x2F42', 'nid':'SSL_CURVE_SECP384R1'}]
     oqs_meth: 'OQS_KEM_alg_bike_l3'
   -
     family: 'CRYSTALS-Kyber'
@@ -119,18 +119,18 @@ sigs:
   -
     family: 'Falcon'
     name: 'falcon512'
-    oid: '1 3 9999 3 1'
-    oid_encoded: '0x2B, 0xCE, 0x0F, 0x03, 0x01'
+    oid: '1 3 9999 3 6'
+    oid_encoded: '0x2B, 0xCE, 0x0F, 0x03, 0x06'
     oqs_meth: 'OQS_SIG_alg_falcon_512'
-    code_point: '0xfe0b'
+    code_point: '0xfeae'
     claimed_security_level: '1'
   -
     family: 'Falcon'
     name: 'falcon1024'
-    oid: '1 3 9999 3 4'
-    oid_encoded: '0x2B, 0xCE, 0x0F, 0x03, 0x04'
+    oid: '1 3 9999 3 9'
+    oid_encoded: '0x2B, 0xCE, 0x0F, 0x03, 0x09'
     oqs_meth: 'OQS_SIG_alg_falcon_1024'
-    code_point: '0xfe0e'
+    code_point: '0xfeb1'
     claimed_security_level: '5'
   -
     family: 'SPHINCS-SHA2'
