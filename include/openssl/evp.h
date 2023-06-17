@@ -125,7 +125,8 @@ OPENSSL_EXPORT int EVP_PKEY_missing_parameters(const EVP_PKEY *pkey);
 // |pkey|. For an RSA key, this returns the number of bytes needed to represent
 // the modulus. For an EC key, this returns the maximum size of a DER-encoded
 // ECDSA signature.
-// OQS note: We've changed the return type from "int" to "size_t" to allow for PQ algorithms with large signatures.
+// OQS note: We've changed the return type from "int" to "size_t" to allow for
+// PQ algorithms with large signatures.
 OPENSSL_EXPORT size_t EVP_PKEY_size(const EVP_PKEY *pkey);
 
 // EVP_PKEY_bits returns the "size", in bits, of |pkey|. For an RSA key, this
@@ -235,11 +236,6 @@ OPENSSL_EXPORT EC_KEY *EVP_PKEY_get1_EC_KEY(const EVP_PKEY *pkey);
 0 )
 ///// OQS_TEMPLATE_FRAGMENT_DEFINE_EVP_PKEYS_END
 
-// EVP_PKEY_assign sets the underlying key of |pkey| to |key|, which must be of
-// the given type. It returns one if successful or zero if the |type| argument
-// is not one of the |EVP_PKEY_*| values or if |key| is NULL.
-OPENSSL_EXPORT int EVP_PKEY_assign(EVP_PKEY *pkey, int type, void *key);
-
 // EVP_PKEY_set_type sets the type of |pkey| to |type|. It returns one if
 // successful or zero if the |type| argument is not one of the |EVP_PKEY_*|
 // values. If |pkey| is NULL, it simply reports whether the type is known.
@@ -294,9 +290,9 @@ OPENSSL_EXPORT int EVP_marshal_private_key(CBB *cbb, const EVP_PKEY *key);
 // Raw keys
 //
 // Some keys types support a "raw" serialization. Currently the only supported
-// raw format is Ed25519, where the public key and private key formats are those
-// specified in RFC 8032. Note the RFC 8032 private key format is the 32-byte
-// prefix of |ED25519_sign|'s 64-byte private key.
+// raw formats are X25519 and Ed25519, where the formats are those specified in
+// RFC 7748 and RFC 8032, respectively. Note the RFC 8032 private key format is
+// the 32-byte prefix of |ED25519_sign|'s 64-byte private key.
 
 // EVP_PKEY_new_raw_private_key returns a newly allocated |EVP_PKEY| wrapping a
 // private key of the specified type. It returns one on success and zero on
@@ -1087,6 +1083,15 @@ OPENSSL_EXPORT int EVP_PKEY_CTX_set_dsa_paramgen_bits(EVP_PKEY_CTX *ctx,
 OPENSSL_EXPORT int EVP_PKEY_CTX_set_dsa_paramgen_q_bits(EVP_PKEY_CTX *ctx,
                                                         int qbits);
 
+// EVP_PKEY_assign sets the underlying key of |pkey| to |key|, which must be of
+// the given type. If successful, it returns one. If the |type| argument
+// is not one of |EVP_PKEY_RSA|, |EVP_PKEY_DSA|, or |EVP_PKEY_EC| values or if
+// |key| is NULL, it returns zero. This function may not be used with other
+// |EVP_PKEY_*| types.
+//
+// Use the |EVP_PKEY_assign_*| functions instead.
+OPENSSL_EXPORT int EVP_PKEY_assign(EVP_PKEY *pkey, int type, void *key);
+
 
 // Preprocessor compatibility section (hidden).
 //
@@ -1109,29 +1114,6 @@ OPENSSL_EXPORT int EVP_PKEY_CTX_set_dsa_paramgen_q_bits(EVP_PKEY_CTX *ctx,
 
 #define EVPerr(function, reason) \
   ERR_put_error(ERR_LIB_EVP, 0, reason, __FILE__, __LINE__)
-
-
-// Private structures.
-
-struct evp_pkey_st {
-  CRYPTO_refcount_t references;
-
-  // type contains one of the EVP_PKEY_* values or NID_undef and determines
-  // which element (if any) of the |pkey| union is valid.
-  int type;
-
-  union {
-    void *ptr;
-    RSA *rsa;
-    DSA *dsa;
-    DH *dh;
-    EC_KEY *ec;
-  } pkey;
-
-  // ameth contains a pointer to a method table that contains many ASN.1
-  // methods for the key type.
-  const EVP_PKEY_ASN1_METHOD *ameth;
-} /* EVP_PKEY */;
 
 
 #if defined(__cplusplus)

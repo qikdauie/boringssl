@@ -414,32 +414,46 @@ class TLSFuzzer {
     SSL_CTX_enable_ocsp_stapling(ctx_.get());
 
     // Enable versions and ciphers that are off by default.
-    if (!SSL_CTX_set_strict_cipher_list(ctx_.get(), "ALL:NULL-SHA")) {
+    if (!SSL_CTX_set_strict_cipher_list(ctx_.get(), "ALL:3DES")) {
       return false;
     }
 
-    static const int kCurves[] = {
-        NID_CECPQ2, NID_X25519, NID_X9_62_prime256v1,
-        NID_secp384r1, NID_secp521r1
-///// OQS_TEMPLATE_FRAGMENT_LIST_NIDS_START
-        NID_frodo640aes, NID_p256_frodo640aes,
-        NID_frodo640shake, NID_p256_frodo640shake,
-        NID_frodo976aes, NID_p384_frodo976aes,
-        NID_frodo976shake, NID_p384_frodo976shake,
-        NID_frodo1344aes, NID_p521_frodo1344aes,
-        NID_frodo1344shake, NID_p521_frodo1344shake,
-        NID_bikel1, NID_p256_bikel1,
-        NID_bikel3, NID_p384_bikel3,
-        NID_kyber512, NID_p256_kyber512,
-        NID_kyber768, NID_p384_kyber768,
-        NID_kyber1024, NID_p521_kyber1024,
-        NID_hqc128, NID_p256_hqc128,
-        NID_hqc192, NID_p384_hqc192,
-        NID_hqc256, NID_p521_hqc256,
-///// OQS_TEMPLATE_FRAGMENT_LIST_NIDS_END
+    static const uint16_t kGroups[] = {
+        SSL_GROUP_X25519_KYBER768_DRAFT00, SSL_GROUP_X25519,
+        SSL_GROUP_SECP256R1, SSL_GROUP_SECP384R1, SSL_GROUP_SECP521R1,
+///// OQS_TEMPLATE_FRAGMENT_LIST_GROUPS_START
+        SSL_GROUP_FRODO640AES,
+        SSL_GROUP_P256_FRODO640AES,
+        SSL_GROUP_FRODO640SHAKE,
+        SSL_GROUP_P256_FRODO640SHAKE,
+        SSL_GROUP_FRODO976AES,
+        SSL_GROUP_P384_FRODO976AES,
+        SSL_GROUP_FRODO976SHAKE,
+        SSL_GROUP_P384_FRODO976SHAKE,
+        SSL_GROUP_FRODO1344AES,
+        SSL_GROUP_P521_FRODO1344AES,
+        SSL_GROUP_FRODO1344SHAKE,
+        SSL_GROUP_P521_FRODO1344SHAKE,
+        SSL_GROUP_BIKEL1,
+        SSL_GROUP_P256_BIKEL1,
+        SSL_GROUP_BIKEL3,
+        SSL_GROUP_P384_BIKEL3,
+        SSL_GROUP_KYBER512,
+        SSL_GROUP_P256_KYBER512,
+        SSL_GROUP_KYBER768,
+        SSL_GROUP_P384_KYBER768,
+        SSL_GROUP_KYBER1024,
+        SSL_GROUP_P521_KYBER1024,
+        SSL_GROUP_HQC128,
+        SSL_GROUP_P256_HQC128,
+        SSL_GROUP_HQC192,
+        SSL_GROUP_P384_HQC192,
+        SSL_GROUP_HQC256,
+        SSL_GROUP_P521_HQC256
+///// OQS_TEMPLATE_FRAGMENT_LIST_GROUPS_END
     };
-    if (!SSL_CTX_set1_curves(ctx_.get(), kCurves,
-                             OPENSSL_ARRAY_SIZE(kCurves))) {
+    if (!SSL_CTX_set1_group_ids(ctx_.get(), kGroups,
+                                OPENSSL_ARRAY_SIZE(kGroups))) {
       return false;
     }
 

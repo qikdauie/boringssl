@@ -24,8 +24,8 @@
 #include "internal.h"
 
 static void oqs_free(EVP_PKEY *pkey) {
-  OPENSSL_free(pkey->pkey.ptr);
-  pkey->pkey.ptr = NULL;
+  OPENSSL_free(pkey->pkey);
+  pkey->pkey = NULL;
 }
 
 #define DEFINE_OQS_SET_PRIV_RAW(ALG, OQS_METH)                              \
@@ -57,7 +57,7 @@ static void oqs_free(EVP_PKEY *pkey) {
            key->ctx->length_public_key);                                    \
                                                                             \
     oqs_free(pkey);                                                         \
-    pkey->pkey.ptr = key;                                                   \
+    pkey->pkey = key;                                                   \
     return 1;                                                               \
   }
 
@@ -65,7 +65,7 @@ static void oqs_free(EVP_PKEY *pkey) {
 #define DEFINE_OQS_GET_PRIV_RAW(ALG, OQS_METH)                      \
   static int ALG##_get_priv_raw(const EVP_PKEY *pkey, uint8_t *out, \
                                 size_t *out_len) {                  \
-    OQS_KEY *key = pkey->pkey.ptr;                                  \
+    OQS_KEY *key = pkey->pkey;                                  \
     if (!key->has_private) {                                        \
       OPENSSL_PUT_ERROR(EVP, EVP_R_NOT_A_PRIVATE_KEY);              \
       return 0;                                                     \
@@ -131,7 +131,7 @@ static void oqs_free(EVP_PKEY *pkey) {
     key->has_private = 0;                                         \
                                                                   \
     oqs_free(pkey);                                               \
-    pkey->pkey.ptr = key;                                         \
+    pkey->pkey = key;                                         \
     return 1;                                                     \
   }
 
@@ -147,7 +147,7 @@ static void oqs_free(EVP_PKEY *pkey) {
 
 #define DEFINE_OQS_PUB_ENCODE(ALG)                                            \
   static int ALG##_pub_encode(CBB *out, const EVP_PKEY *pkey) {               \
-    const OQS_KEY *key = pkey->pkey.ptr;                                      \
+    const OQS_KEY *key = pkey->pkey;                                      \
                                                                               \
     /* See RFC 8410, section 4. */                                            \
     CBB spki, algorithm, oid, key_bitstring;                                  \
@@ -168,14 +168,14 @@ static void oqs_free(EVP_PKEY *pkey) {
   }
 
 static int oqs_pub_cmp(const EVP_PKEY *a, const EVP_PKEY *b) {
-  const OQS_KEY *a_key = a->pkey.ptr;
-  const OQS_KEY *b_key = b->pkey.ptr;
+  const OQS_KEY *a_key = a->pkey;
+  const OQS_KEY *b_key = b->pkey;
   return OPENSSL_memcmp(a_key->pub, b_key->pub,
                         a_key->ctx->length_public_key) == 0;
 }
 
 static size_t oqs_sig_size(const EVP_PKEY *pkey) {
-  const OQS_KEY *key = pkey->pkey.ptr;
+  const OQS_KEY *key = pkey->pkey;
   return key->ctx->length_signature;
 }
 
@@ -230,10 +230,10 @@ DEFINE_OQS_ASN1_METHODS(dilithium5, OQS_SIG_alg_dilithium_5, EVP_PKEY_DILITHIUM5
 DEFINE_OQS_PKEY_ASN1_METHOD(dilithium5, EVP_PKEY_DILITHIUM5, OID(0x2B, 0x06, 0x01, 0x04, 0x01, 0x02, 0x82, 0x0B, 0x07, 0x08, 0x07))
 
 DEFINE_OQS_ASN1_METHODS(falcon512, OQS_SIG_alg_falcon_512, EVP_PKEY_FALCON512)
-DEFINE_OQS_PKEY_ASN1_METHOD(falcon512, EVP_PKEY_FALCON512, OID(0x2B, 0xCE, 0x0F, 0x03, 0x01))
+DEFINE_OQS_PKEY_ASN1_METHOD(falcon512, EVP_PKEY_FALCON512, OID(0x2B, 0xCE, 0x0F, 0x03, 0x06))
 
 DEFINE_OQS_ASN1_METHODS(falcon1024, OQS_SIG_alg_falcon_1024, EVP_PKEY_FALCON1024)
-DEFINE_OQS_PKEY_ASN1_METHOD(falcon1024, EVP_PKEY_FALCON1024, OID(0x2B, 0xCE, 0x0F, 0x03, 0x04))
+DEFINE_OQS_PKEY_ASN1_METHOD(falcon1024, EVP_PKEY_FALCON1024, OID(0x2B, 0xCE, 0x0F, 0x03, 0x09))
 
 DEFINE_OQS_ASN1_METHODS(sphincssha2128fsimple, OQS_SIG_alg_sphincs_sha2_128f_simple, EVP_PKEY_SPHINCSSHA2128FSIMPLE)
 DEFINE_OQS_PKEY_ASN1_METHOD(sphincssha2128fsimple, EVP_PKEY_SPHINCSSHA2128FSIMPLE, OID(0x2B, 0xCE, 0x0F, 0x06, 0x04, 0x0D))
