@@ -207,6 +207,8 @@ elseif(MSVC)
               # possible loss of data
       "C4267" # conversion from 'size_t' to 'int', possible loss of data
       "C4706" # assignment within conditional expression
+      "C4204" # nonstandard extension used: non-constant aggregate initializer
+      "C4221" # TODO(dauie) add in warning info
       )
   string(REPLACE "C" " -wd" MSVC_DISABLED_WARNINGS_STR
                             ${MSVC_DISABLED_WARNINGS_LIST})
