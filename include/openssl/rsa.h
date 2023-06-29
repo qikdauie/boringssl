@@ -63,6 +63,8 @@
 #include <openssl/ex_data.h>
 #include <openssl/thread.h>
 
+#include "../../crypto/fipsmodule/rsa/internal.h"
+
 #if defined(__cplusplus)
 extern "C" {
 #endif

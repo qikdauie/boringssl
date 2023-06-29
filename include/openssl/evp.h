@@ -72,6 +72,8 @@
 #include <openssl/digest.h>
 #include <openssl/nid.h>
 
+#include "../../crypto/evp/internal.h"
+
 #if defined(__cplusplus)
 extern "C" {
 #endif
