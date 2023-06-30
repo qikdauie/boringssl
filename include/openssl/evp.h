@@ -234,6 +234,10 @@ OPENSSL_EXPORT EC_KEY *EVP_PKEY_get1_EC_KEY(const EVP_PKEY *pkey);
    (pkey_id == NID_hqc192) || \
    (pkey_id == NID_hqc256) || \
 0 )
+
+OPENSSL_EXPORT int oqs_verify_sig(EVP_PKEY *bssl_oqs_pkey, const uint8_t *sig,
+                                  size_t siglen, const uint8_t *tbs,
+                                  size_t tbslen);
 ///// OQS_TEMPLATE_FRAGMENT_DEFINE_EVP_PKEYS_END
 
 // EVP_PKEY_set_type sets the type of |pkey| to |type|. It returns one if

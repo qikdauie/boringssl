@@ -106,6 +106,19 @@ static int pkey_oqs_verify_message(EVP_PKEY_CTX *ctx, const uint8_t *sig,
   return 1;
 }
 
+int oqs_verify_sig(EVP_PKEY *bssl_oqs_pkey, const uint8_t *sig,
+                   size_t siglen, const uint8_t *tbs,
+                   size_t tbslen) {
+  OQS_KEY *key = (OQS_KEY *)(bssl_oqs_pkey->pkey);
+  if (siglen > key->ctx->length_signature ||
+      OQS_SIG_verify(key->ctx, tbs, tbslen, sig, siglen, key->pub) != OQS_SUCCESS) {
+    OPENSSL_PUT_ERROR(EVP, EVP_R_INVALID_SIGNATURE);
+    return 0;
+  }
+
+  return 1;
+}
+
 static int pkey_oqs_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2) {
     return 1;
 }
