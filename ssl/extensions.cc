@@ -2404,11 +2404,15 @@ bool ssl_setup_key_shares(SSL_HANDSHAKE *hs, uint16_t override_group_id) {
     }
 
     group_id = groups[0];
-
+    for (size_t i = 1; i < groups.size() && second_group_id == 0; i++) {
+      if (!is_post_quantum_group(groups[i])) {
+        group_id = groups[i];
+      }
+    }
     // We'll try to include one post-quantum and one classical initial key
     // share.
     for (size_t i = 1; i < groups.size() && second_group_id == 0; i++) {
-      if (is_post_quantum_group(group_id) != is_post_quantum_group(groups[i])) {
+      if (!is_post_quantum_group(groups[i]) && groups[i] != group_id) {
         second_group_id = groups[i];
         assert(second_group_id != group_id);
       }
